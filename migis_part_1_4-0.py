@@ -1,3 +1,7 @@
+#WISHLIST:
+#input: set band order for TS raster input files
+#output: multiband image before clipped multiband images (order in tool frontend), set output von 'clipped section' and clipped - to be classified' to OPTIONAL
+
 """
 Model exported as python.
 Name : MiGIS part 1 preprocess the TS image (create clipped multiband image)
