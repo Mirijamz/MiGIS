@@ -1,3 +1,7 @@
+#WISHLIST:
+#without Dzetsaka class algorithm - scikitlearn classalgorithm random forest?
+#In 'ClassAreaQuantification': do not write output file, temporary output ist input for 'add class name'
+
 """
 Model exported as python.
 Name : MiGIS part 3 classification
