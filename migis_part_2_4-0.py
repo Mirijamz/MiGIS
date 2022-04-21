@@ -1,3 +1,6 @@
+#WISHLIST:
+#without Dzetsaka train algorithm - just scikitlearn train algorithm random forest?
+
 """
 Model exported as python.
 Name : MiGIS part 2 train algorithm
