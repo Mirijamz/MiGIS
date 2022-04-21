@@ -1,3 +1,7 @@
+#WISHLIST:
+#Dissolve table: ID field as index join fields (bX_median, bX_stdev) in pivot - individual ID field (no duplicates)  and all band info columns 
+#Boxplot output - group all 9 to single .html file
+
 """
 Model exported as python.
 Name : MiGIS part 2 ROI evaluation [optional]
