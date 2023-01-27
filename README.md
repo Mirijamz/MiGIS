@@ -35,17 +35,23 @@ QGIS Development Team, 2022. QGIS Geographic Information System, Version 3.22. O
 
 
 ## Short version
-This toolbox was developed for the digital spatial analysis and composition classification of soil and sediment thin sections in QGIS 3. The plugin is divided in three main parts to pre-process (MiGIS 1), train (MiGIS 2.1) and classify (MiGIS 3). In addition, training data set validity can be assessed in MiGIS 2.2. Detailed processing are described below and summarised in the following.
+This toolbox was developed for the digital spatial analysis and composition classification of soil and sediment thin sections in QGIS 3. The plugin is divided in three main parts to pre-process in [MiGIS 1](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_1_preprocess.py), train [MiGIS 2.1](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_2-1_train_algorithm.py) and classify [MiGIS 3](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_3_classification.py). In addition, training data set validity can be assessed in [MiGIS 2.2](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_2-2_ROI_eval.py). Detailed processing are described below and summarised in the following.
 
 ### Integrate MiGIS into QGIS
-MiGIS Toolbox is based on the QGIS Graphical Modeler (see [QGIS documentation](https://docs.qgis.org/3.22/en/docs/index.html)) and can therefore be easily integrated into QGIS as a [Python processing script](https://docs.qgis.org/3.22/en/docs/user_manual/processing/toolbox.html). Besides native QGIS and GDAL geoprocessing algorithms, MiGIS also applies parts of the [Dzetsaka classification plugin for QGIS](https://github.com/nkarasiak/dzetsaka) (see Karasiak 2016). The Dzetsaka plugin must separately be added via the [QGIS extension manager]( https://docs.qgis.org/3.22/en/docs/training_manual/qgis_plugins/fetching_plugins.html). The Random Forest classifier, integrated via Dzetsaka, runs with the Python scipy library, thus scikit-learn (see Pedregosa et al. 2011) must therefore be installed via the OSGeo shell (see [Dzetsaka classification plugin manual] (https://github.com/nkarasiak/dzetsaka/blob/master/readme.md).
+MiGIS Toolbox is based on the QGIS Graphical Modeler (see [QGIS documentation](https://docs.qgis.org/3.22/en/docs/index.html)) and can therefore be easily integrated into QGIS as a [Python processing script](https://docs.qgis.org/3.22/en/docs/user_manual/processing/toolbox.html). Besides native QGIS and GDAL geoprocessing algorithms, MiGIS also applies parts of the [Dzetsaka classification plugin for QGIS](https://github.com/nkarasiak/dzetsaka) (see Karasiak 2016). The Dzetsaka plugin must separately be added via the [QGIS extension manager]( https://docs.qgis.org/3.22/en/docs/training_manual/qgis_plugins/fetching_plugins.html). The Random Forest classifier, integrated via Dzetsaka, runs with the Python scipy library, thus scikit-learn (see Pedregosa et al. 2011) must therefore be installed via the OSGeo shell (see [Dzetsaka classification plugin manual](https://github.com/nkarasiak/dzetsaka/blob/master/readme.md).
 
 ### Imagery aquisition
 Up to three high-resolution RGB images of a thin section, for example a transmitted light (TL), cross-polarised (XPL) and reflected light (RL) image are required. The described workflow is adapted to soil and sediment micromorphology, a section size of 6x8 cm and flatbed scan acquired imagery with a resolution of 1200 dpi, but can be adapted to other application areas and section types and sizes.
+
 ### Geoeferencing
-Before importing the imagery into QGIS, spatial reference points have to be created using image processing software (see Inkscape template file: MiGIS_TS_ref_temp.svg). These reference points are used for straightforward georeferentiation, using QGIS Georeferencer and a metric CRS (coordinate reference system), for example UTM. 
+Before importing the imagery into QGIS, spatial reference points have to be created using image processing software (see Inkscape template file: [MiGIS_TS_ref_temp.svg](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_TS_ref_temp.svg)). These reference points match the dimensions provided by [MiGIS_georef.points](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_georef.points) and are used for straightforward georeferentiation, using QGIS Georeferencer and a metric CRS (coordinate reference system), for example UTM. 
+
 ### Classification training
 For the semi-supervised classification approach, user defined ROIs (Regions of Interest) should cover the variety of the thin section’s composition: pore space, groundmass, coarse fraction (e.g. quartz), organic remains (e.g. charcoal), pedofeatures such as clay coatings, iron oxide nodules and precipitates (e.g. micrite). Create a new polygon shapefile and add numeric class (integer) and a class description/label (string) field to the ROIs.
+
+### Classification and quantification
+After creating the classification model in MiGIS 2.1 and based on the cropped multi-band raster of MiGIS 1, it can be classified in MiGIS 3. For the accuracy assessment, the creation of a confusion matrix, another training dataset with independent reference ROIs must be available. Based on the classification map created by MiGIS 3, class area statistics (in m²) are also generated.
+
 
 
 
