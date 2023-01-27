@@ -11,8 +11,7 @@ Zickel, M., Kehl, M., Gröbner, M. o(in prep.). MiGIS: Digital soil and sediment
 ### Cite toolbox: 
 Zickel, M., Kehl, M., Gröbner, M., 2023. MiGIS toolbox. https://github.com/Mirijamz/MiGIS-script
 Bibtex reference:
-
-...
+```
 @misc{zickel2023MiGIS,
 title={MiGIS toolbox},
 author={Mirijam and Martin Kehl and Marie Gröbner},
@@ -20,7 +19,7 @@ url={https://github.com/Mirijamz/MiGIS-script},
 year={2023},
 doi={XXXX}
 }
-...
+```
 
 ### This work is based on:
 Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32.
