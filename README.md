@@ -1,7 +1,7 @@
 # MiGIS toolbox
 MiGIS python script based toolbox for QGIS - analyse and classify soil and sediment thin section in GIS
 
-![MiGIS-Workflow](https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/workflow_v5_low.png)
+![MiGIS-Workflow](https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/workflow.png)
 
 Info
 -Random Forest classifier with 100 trees and splitted at each internal tree note using the square root of the number of features e.g. max_features=sqrt(n_features):
