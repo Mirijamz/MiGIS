@@ -4,13 +4,13 @@ MiGIS toolbox for QGIS 3 - digital soil and sediment thin section analysis
 ![MiGIS-Workflow](https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/workflow.png)
 
 
-##Info
+## Info
 Related publication: Zickel, M., Kehl, M., Gröbner, M., Reimann, T., (in prep.). MiGIS: Digital soil and sediment thin sections analyses using an open-source GIS Machine Learning approach. Applied Computing and Geosciences.
 
-###Cite toolbox as: 
+### Cite toolbox as: 
 Zickel, M., Kehl, M., Gröbner, M., 2023. MiGIS toolbox. https://github.com/Mirijamz/MiGIS-script
 
-###This work is based on:
+### This work is based on:
 Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32.
 
 Karasiak, N., 2016. Dzetsaka Qgis Classification plugin. DOI:10.5281/zenodo.2552284, 2021-04-01.
