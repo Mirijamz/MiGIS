@@ -1,7 +1,10 @@
 # MiGIS toolbox manual
 MiGIS toolbox for QGIS 3 - digital soil and sediment thin section analysis
 
-![MiGIS-Workflow](https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/workflow.png)
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/workflow.png"/>
+alt="MiGIS-Workflow"/>
+</p>
 
 ## Short version
 MiGIS was developed for digital spatial analysis and composition classification of soil and sediment thin sections in QGIS 3 3. The plugin is divided in three main parts to pre-process in [MiGIS 1](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_1_preprocess.py), train [MiGIS 2.1](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_2-1_train_algorithm.py) and classify [MiGIS 3](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_3_classification.py). In addition, training data set validity can be assessed in [MiGIS 2.2](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_2-2_ROI_eval.py). Detailed processing are described below and summarised in the following.
