@@ -50,7 +50,7 @@ doi={XXXX}
 }
 ```
 
-## Detailed instructions
+# Detailed instructions
 
 ### Required hardware
 •	Transmitted light scanner
@@ -67,15 +67,15 @@ doi={XXXX}
 •	Basic knowledge about the electromagnetic spectrum, light refraction, spectral signatures
 •	Good training in micromorphology
 
+### Micromorphological thin section scans
+In micromorphology, different microscope light modes - PPL (Plane Polarized Light), XPL (Cross Polarised Light) and OIL (Oblique Incident Light) - are used to distinguish thin section components (e.g. minerals) by their specific light refraction properties in different polarisation modes. Using transmitted light scanning, the analytical oppurtunities of petrographic microscopy can be obtained for an entire thin section. PPL can be acquired by capturing the plain thin section in transmitted light scanning mode (TL - Transmitted Light). For XPL, two orthogonally aligned polarisation films (90° orientation offset) are added on top and below the thin section. Using ordinary flatbed scanning and a black (isotropic) film on top of the thin section, a RL (Reflected Light) image can be produced which is similar to OIL imagery.
+
+
 ## MiGIS integration (QGIS)
 1.	Install the Dzetsaka Classification Plugin in QGIS (go to ‘Plugins’ and select ‘Manage and install plugins’). If SAGA GIS is not installed yet, please add the current version using the OSGEO setup.
-2.	Install the Python machine learning library ‘scikit-learn’ using the OSGeo shell (QGIS command line). For a detailed instruction check the documentation of Karasiak 2021: https://github.com/nkarasiak/dzetsaka
+2.	Install the Python machine learning library ‘scikit-learn’ using the OSGeo shell (QGIS command line). For a detailed instruction check the documentation of [Dzetsaka classification plugin manual](https://github.com/nkarasiak/dzetsaka/blob/master/readme.md)
 3.	Import the MiGIS Python scripts to your QGIS Project (Python symbol in ‘Processing toolbox’ tab) by ‘Adding Script to Toolbox’.
 4.	After importing, all four parts of the toolbox are available in the QGIS ‘Processing toolbox’ (category ‘Scripts’).
 
-
-
-### Micromorphological thin section scans
-In micromorphology, different microscope light modes - PPL (Plane Polarized Light), XPL (Cross Polarised Light) and OIL (Oblique Incident Light) - are used to distinguish thin section components (e.g. minerals) by their specific light refraction properties in different polarisation modes. Using transmitted light scanning, the analytical oppurtunities of petrographic microscopy can be obtained for an entire thin section. PPL can be acquired by capturing the plain thin section in transmitted light scanning mode (TL - Transmitted Light). For XPL, two orthogonally aligned polarisation films (90° orientation offset) are added on top and below the thin section. Using ordinary flatbed scanning and a black (isotropic) film on top of the thin section, a RL (Reflected Light) image can be produced which is similar to OIL imagery.
 
 
