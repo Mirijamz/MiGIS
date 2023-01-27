@@ -5,10 +5,21 @@ MiGIS toolbox for QGIS 3 - digital soil and sediment thin section analysis
 
 
 ## Info
-### Related publication: Zickel, M., Kehl, M., Gröbner, M. o(in prep.). MiGIS: Digital soil and sediment thin sections analyses using an open-source GIS Machine Learning approach. Applied Computing and Geosciences.
+### Related publication: 
+Zickel, M., Kehl, M., Gröbner, M. o(in prep.). MiGIS: Digital soil and sediment thin sections analyses using an open-source GIS Machine Learning approach. Applied Computing and Geosciences.
 
-### Cite toolbox as: 
+### Cite toolbox: 
 Zickel, M., Kehl, M., Gröbner, M., 2023. MiGIS toolbox. https://github.com/Mirijamz/MiGIS-script
+Bibtex reference:
+...
+@misc{zickel2023MiGIS,
+title={MiGIS toolbox},
+author={Mirijam and Martin Kehl and Marie Gröbner},
+url={https://github.com/Mirijamz/MiGIS-script},
+year={2023},
+doi={XXXX}
+}
+...
 
 ### This work is based on:
 Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32.
@@ -26,7 +37,7 @@ QGIS Development Team, 2022. QGIS Geographic Information System, Version 3.22. O
 This toolbox was developed for the digital spatial analysis and composition classification of soil and sediment thin sections in QGIS 3. The plugin is divided in three main parts to pre-process (MiGIS 1), train (MiGIS 2.1) and classify (MiGIS 3). In addition, training data set validity can be assessed in MiGIS 2.2. Detailed processing are described below and summarised in the following.
 
 ### Integrate MiGIS into QGIS
-MiGIS Toolbox is based on the QGIS Graphical Modeler (see [QGIS documentation]( https://docs.qgis.org/3.22/en/docs/index.html) and can therefore be easily integrated into QGIS as a [Python processing script]( https://docs.qgis.org/3.22/en/docs/user_manual/processing/toolbox.html). Besides native QGIS and GDAL geoprocessing algorithms, MiGIS also applies parts of the [Dzetsaka classification plugin for QGIS]( https://github.com/nkarasiak/dzetsaka/) (see Karasiak 2016). The Dzetsaka plugin must separately be added via the [QGIS extension manager]( https://docs.qgis.org/3.22/en/docs/training_manual/qgis_plugins/fetching_plugins.html). The Random Forest classifier, integrated via Dzetsaka, runs with the Python scipy library, thus scikit-learn (see Pedregosa et al. 2011) must therefore be installed via the OSGeo shell (see [Dzetsaka classification plugin manual] (https://github.com/nkarasiak/dzetsaka/blob/master/readme.md).
+MiGIS Toolbox is based on the QGIS Graphical Modeler (see [QGIS documentation](https://docs.qgis.org/3.22/en/docs/index.html)) and can therefore be easily integrated into QGIS as a [Python processing script](https://docs.qgis.org/3.22/en/docs/user_manual/processing/toolbox.html). Besides native QGIS and GDAL geoprocessing algorithms, MiGIS also applies parts of the [Dzetsaka classification plugin for QGIS](https://github.com/nkarasiak/dzetsaka) (see Karasiak 2016). The Dzetsaka plugin must separately be added via the [QGIS extension manager]( https://docs.qgis.org/3.22/en/docs/training_manual/qgis_plugins/fetching_plugins.html). The Random Forest classifier, integrated via Dzetsaka, runs with the Python scipy library, thus scikit-learn (see Pedregosa et al. 2011) must therefore be installed via the OSGeo shell (see [Dzetsaka classification plugin manual] (https://github.com/nkarasiak/dzetsaka/blob/master/readme.md).
 
 ### Imagery aquisition
 Up to three high-resolution RGB images of a thin section, for example a transmitted light (TL), cross-polarised (XPL) and reflected light (RL) image are required. The described workflow is adapted to soil and sediment micromorphology, a section size of 6x8 cm and flatbed scan acquired imagery with a resolution of 1200 dpi, but can be adapted to other application areas and section types and sizes.
