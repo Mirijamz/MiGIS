@@ -2,7 +2,7 @@
 MiGIS toolbox for QGIS 3 - digital soil and sediment thin section analysis
 
 <p align="center">
-  <img src="https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/workflow.png"/>
+  <img src="https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/workflow.png"
 alt="MiGIS-Workflow"/>
 </p>
 
