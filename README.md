@@ -54,17 +54,23 @@ doi={XXXX}
 
 ### Required hardware
 •	Transmitted light scanner
+
 •	Polarisation film, black opaque film
+
 •	QGIS-capable computer (min.: 8GB RAM, 100GB free storage, CPU with 4 cores)
 
 ### Software
 •	For digital image preprocessing: Inkscape (current: Inkscape 1.1.2)
+
 •	GIS software: QGIS 3 (current: QGIS 3.22)
 
 ### Skills
 •	Basic GIS (QGIS) experience: Georeference raster data, create and edit vector data (polygons)
+
 •	Basic knowledge of semi-automated image classification and accuracy assessment
+
 •	Basic knowledge about the electromagnetic spectrum, light refraction, spectral signatures
+
 •	Good training in micromorphology
 
 ### Micromorphological thin section scans
