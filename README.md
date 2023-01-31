@@ -99,7 +99,9 @@ In micromorphology, different microscope light modes - PPL (Plane Polarized Ligh
 
 ## Image classification basics & Random Forest Classifier
 Among others, Machine Learning supported semi-supervised image classification is used to produce remote sensing products such as land cover maps. By the integration of multispectral information, different surface types can be identified, sorted and extracted by the classifier. MiGIS follows a similar approach by using bundled spectral information from TL, XPL and RL imagery (see [Transmitted light scanning](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#transmitted-light-scanning-canon-canoscan-9000f-mark-ii)) as classification input. To do this, it is necessary to spatial reference the RGB scan images (see [Stack images & spatial referencing]( https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#stack-images--spatial-referencing-using-image-processing-software-inkscape)), perform georeferentiation in QGIS (see [Georeference thin section imagery] (https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#georeference-thin-section-imagery-qgis-georeferencer)) and composite them to a multi-band raster ([see MiGIS 1](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-1-preprocess-ts-images)). Based on this data set, training areas (ROI - Regions of Interest) are collected using a costum vector polygon shapefile. Each ROI polygon should include an ID (unique, consecutive number) and be assigned to a user-defined class (one value per class). If necessary, a field with a class description (label) can be added. Each classification process requires at least two classes, each with a minimum of one ROI polygon. The selected area of each ROI polygon determines the number of pixels used for training the respective class. Each class should include approximately equal numbers of ROIs (pixel counts). Also, misclassifications might occur due to abundant similarity of pixel values between separate classes. ROI validity can be estimated before the actual classification by running [MiGIS 2.2](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-22-roi-evaluation-optional). Based on the training dataset a Random Forest classification model can be produced using [MiGIS 2.1](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-21-train-algorithm). After running the classification in [MiGIS 3](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-22-roi-evaluation-optional) its accuracy can be assessed when a reference training data set is provided and accordingly by the evaluation of the confusion matrix. Produced classification models can also be applied to other thin section scans. However, increased variation concerning sediment composition, embedding resin and thin section thickness, and image acquisition may produce misclassifications. 
+
 MiGIS applies Scikit-learn Random Forest classifier with a fixed number of 100 trees. Splitting is performed at each internal tree node using the square root of the number of features e.g. max_features = sqrt(n_features):
+
 When constructing each decision tree of the Random Forest, the Classifier will still use all the given features defined in the training data. But for the node splitting only a defined number (maximum features) is used. These maximum features are randomly selected from the training data (see also Pedregosa et al. 2011, Scikit-learn developers 2007-2022, Breiman 2001).
 
 
@@ -108,10 +110,15 @@ When constructing each decision tree of the Random Forest, the Classifier will s
 
 ### Transmitted light scanning (Canon Canoscan 9000F Mark II)
 •	Use the transmitted light mode for TL (Transmitted Light) and XPL (Cross-Polarised Light) thin section scanning. Some flatbed scanner come with stencils (film-holder) to lock the scan object’s position, (e.g. dia slides or film). They can be helpful to keep the thin section in position.
+
 •	XPL scanning: One polarisation film is positioned below the thin section. The polarisation direction of the second film needs to be orthogonal (rotated 90°) to the first film to achieve cross-polarisation.
+
 •	Regular flatbed scanning can be applied to produce RL (Reflected Light) images. Using the film-holder and black (isotropic, non-reflective) film on top of the thin section.
+
 •	Choose high-resolution scanning mode (1200 dpi) without automated image adjustments.
+
 •	If necessary, image brightness and contrast can be adjusted using raster image processing software (e.g. Adobe Photoshop, GIMP).
+
 NOTE: Keep the same scanning position for each thin section: the geometry of produced TL/ XPL/ RL imagery can vary according to the scan position on the scan pad. It is recommended to use a stencil (e.g. film holder for transmitted light scans). To avoid reflectance artifacts it could be helpful to turn all thin sections upside down. reflection artefacts will then appear where the sample label is positioned on the glass slide.
 
 ### Stack images & spatial referencing using image processing software (Inkscape)
