@@ -24,10 +24,12 @@ Up to three high-resolution RGB images of a thin section, for example a transmit
 Before importing the imagery into QGIS, spatial reference points have to be created using image processing software (see Inkscape template file: [MiGIS_TS_ref_temp.svg](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_TS_ref_temp.svg)). These reference points match the dimensions provided by [MiGIS_georef.points](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_georef.points) and are used for straightforward georeferentiation, using QGIS Georeferencer and a metric CRS (coordinate reference system), for example UTM. 
 
 ### Classification training
-For the semi-supervised classification approach, user defined ROIs (Regions of Interest) should cover the variety of the thin section’s composition: pore space, groundmass, coarse fraction (e.g. quartz), organic remains (e.g. charcoal), pedofeatures such as clay coatings, iron oxide nodules and precipitates (e.g. micrite). Create a new polygon shapefile and add numeric class (integer) and a class description/label (string) field to the ROIs.
+For the semi-supervised classification approach, user defined ROIs (Regions of Interest) should cover the variety of the thin section’s composition: pore space, groundmass, coarse fraction (e.g. sand/gravel), organic remains (e.g. charcoal), pedofeatures such as clay coatings, iron oxide nodules and precipitates (e.g. micrite). To collect ROIs in a training data set, create a new polygon shapefile layer with a numeric class (integer) and a class description/label (string) field.
 
 ### Classification and quantification
-After creating the classification model in MiGIS 2.1 and based on the cropped multi-band raster of MiGIS 1, it can be classified in MiGIS 3. For the accuracy assessment, the creation of a confusion matrix, another training dataset with independent reference ROIs must be available. Based on the classification map created by MiGIS 3, class area statistics (in m²) are also generated.
+After creating the classification model in[MiGIS 2.1](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-21-train-algorithm) and based on the (cropped) multi-band raster of [MiGIS 1](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-1-preprocess-ts-images), it can be classified in [MiGIS 3](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-22-roi-evaluation-optional). For the accuracy assessment, the creation of a confusion matrix, another training dataset with independent reference ROIs must be available. Based on the classification map created with MiGIS 3, class area statistics (in m²) are also generated.
+
+(see [MiGIS 1](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-1-preprocess-ts-images)). Based on this data set, training areas (ROI - Regions of Interest) are collected using a costum vector polygon shapefile. Each ROI polygon should include an ID (unique, consecutive number) and be assigned to a user-defined class (one value per class). If necessary, a field with a class description (label) can be added. Each classification process requires at least two classes, each with a minimum of one ROI polygon. The selected area of each ROI polygon determines the number of pixels used for training the respective class. Each class should include approximately equal numbers of ROIs (pixel counts). Also, misclassifications might occur due to abundant similarity of pixel values between separate classes. ROI validity can be estimated before the actual classification by running [MiGIS 2.2](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-22-roi-evaluation-optional). Based on the training dataset a Random Forest classification model can be produced using [MiGIS 2.1](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-21-train-algorithm). After running the classification in [MiGIS 3](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-22-roi-evaluation-optional)
 
 ### Related publication: 
 Zickel, M., Kehl, M., Gröbner, M. o(in prep.). MiGIS: Digital soil and sediment thin sections analyses using an open-source GIS Machine Learning approach. Applied Computing and Geosciences.
@@ -181,11 +183,50 @@ Figure 2: Georeferencing a TL thin section image using reference crosses and the
 
 
 ## MiGIS 1 preprocess TS images
+In a first step, the multi-band raster is created, by merging the georeferenced thin section images. The bundled spectral information is the target for later classification. To create the image stack or multi-band raster the tool merges the input RGB bands (TL, XPL, and opt. RL). As a result the multi-band raster will contain 6 (TL + XPL RGB image) or 9 (TL + XPL + RL RGB image) bands. The classification area can be narrowed down by using a clipping layer which matches the outlines of the sample section area (see result in [Fig. 3](github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/MBR_MBRC.png). This step will enable precise area statistics and minimises the computational effort.
+
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/MBR_MBRC.png"
+alt="MBRvsMBRC"/>
+</p>
+
+Figure 3: Georeferenced and stacked thin section mulit-band raster vs. the clipped version.
+
+A clipping layer can be created by adding a new polygon shapefile to the QGIS project (see [Creating a new shapefile]( github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/MBR_MBRC.png)) and using [vector editing]( https://docs.qgis.org/3.22/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html?highlight=editing#). Artificial gaps within the polygon’s area: e.g. dry cracks, and saw marks can be excluded by adding rings (see [Add ring](https://docs.qgis.org/3.22/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html?highlight=editing#add-ring)).
+
+After running the tool, it is recommended to open the ‘Style’ tab of the multi-band raster’s ‘Properties’ and set the sampling method to bilinear. Also, it is possible to switch displayed RGB bands to display TL, XPL, or RL by choosing different band combinations in the dialog.
+Note: The order of the band sets in the output data set might defer due to file naming etc. Possibly band 1 to 3 belong to the TL image’s R, G, B bands and band 4 to 6 provides XPL RGB information.
+
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/MiGIS_1.png"
+alt="MiGIS_1"/>
+</p>
+
+Figure 4: MiGIS 1 tool.
+
 
 ## MiGIS 2.1 train algorithm
 
 ## MiGIS 2.2 ROI evaluation [optional]
 
 ## MiGIS 3 classification
+
+## References
+Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32
+
+Congalton, R., Green, K., 2019. Assessing the Accuracy of Remotely Sensed Data. CRS Press, Boca Raton. https://doi.org/10.1201/9780429052729
+
+GDAL/OGR contributors 2022. GDAL/OGR Geospatial Data Abstraction software Library. Open Source Geospatial Foundation. https://gdal.org , DOI: 10.5281/zenodo.5884351
+
+Karasiak, N., 2021. Documentation: Dzetsaka Qgis Classification plugin: https://github.com/nkarasiak/dzetsaka/, 2022-05-04
+
+Karasiak, N., 2016. Dzetsaka Qgis Classification plugin. DOI:10.5281/zenodo.2552284, 2021-04-01
+
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau, D., Brucher, M., Perrot, M., Duchesnay, É., 2011. Scikit-learn: Machine Learning in Python, JMLR 12, 2825-2830
+
+QGIS Development Team, 2022. QGIS Geographic Information System, Version 3.22. Open Source Geospatial Foundation. https://www.qgis.org/en/site/index.html , 2022-05-04
+
+Scikit-learn developers, 2007-2022. User guide: 1.11.2. Forests of randomized trees. https://scikit-learn.org/stable/modules/ensemble.html#forest, 2022-05-04
+
 
 
