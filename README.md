@@ -57,9 +57,9 @@ doi={XXXX}
 # Detailed instructions
 
 ### Required hardware
-•	Transmitted light scanner
+•	Transmitted light scanner/ film scanner or similiar hardware to capture thin sections
 
-•	Polarisation film, black opaque film
+•	2x polarisation film for XPL imagery, 1x black opaque film for RL imagery
 
 •	QGIS-capable computer (min.: 8GB RAM, 100GB free storage, CPU with 4 cores)
 
@@ -69,7 +69,7 @@ doi={XXXX}
 •	GIS software: QGIS 3 (current: QGIS 3.22)
 
 ### Skills
-•	Basic GIS (QGIS) experience: Georeference raster data, create and edit vector data (polygons)
+•	GIS (QGIS) experience: navigate the GUI, Georeference raster data, create and edit vector data (polygons)
 
 •	Basic knowledge of semi-automated image classification and accuracy assessment
 
@@ -82,10 +82,15 @@ In micromorphology, different microscope light modes - PPL (Plane Polarized Ligh
 
 
 ## MiGIS integration (QGIS)
-1.	Install the Dzetsaka Classification Plugin in QGIS (go to ‘Plugins’ and select ‘Manage and install plugins’). If SAGA GIS is not installed yet, please add the current version using the OSGEO setup.
-2.	Install the Python machine learning library ‘scikit-learn’ using the OSGeo shell (QGIS command line). For a detailed instruction check the documentation of [Dzetsaka classification plugin manual](https://github.com/nkarasiak/dzetsaka/blob/master/readme.md)
-3.	Import the MiGIS Python scripts to your QGIS Project (Python symbol in ‘Processing toolbox’ tab) by ‘Adding Script to Toolbox’.
-4.	After importing, all four parts of the toolbox are available in the QGIS ‘Processing toolbox’ (category ‘Scripts’).
+1.	Install the Dzetsaka Classification Plugin in QGIS (go to ‘Plugins’ and select ‘Manage and install plugins’).
+2.	Install the Python machine learning library ‘scikit-learn’ using OSGeo shell (QGIS command line) using this
+  	command:
+    `o4w_env`
+    `python3 -m pip install scikit-learn -U --user`
+
+3.  For a detailed instruction check the documentation of [Dzetsaka classification plugin manual](https://github.com/nkarasiak/dzetsaka/blob/master/readme.md)
+4.	Import the MiGIS Python scripts to your QGIS Project (Python symbol in ‘Processing toolbox’ tab) by ‘Adding Script to Toolbox’.
+5.	After importing, all four parts of the toolbox are available in the QGIS ‘Processing toolbox’ (category ‘Scripts’).
 
 
 
