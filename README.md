@@ -140,7 +140,7 @@ Create a spatial reference using image processing software (Inkscape)
   <img src="https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Inkscape_reference.png"
 alt="Inkscape"/>
 </p>
-Fig. 1: Creating a spatial reference (cross layer) for thin sections in Inkscape and setting the TL image visibility to 20-50% to adjust image stack.
+Figure 1: Creating a spatial reference (cross layer) for thin sections in Inkscape and setting the TL image visibility to 20-50% to adjust image stack.
 
 3.	Change the transparency of the TL image to 50 - 20% visibility and lock the layer (see [Fig. 1]( https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Inkscape_reference.png)).
 
