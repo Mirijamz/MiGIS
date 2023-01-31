@@ -167,8 +167,8 @@ Figure 1: Creating a spatial reference (cross layer) for thin sections in Inksca
 4.	Import the [MiGIS_georef.points]( https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_georef.points) data set (see [Fig.2](https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Georeferencer.png)) or create a costum set of reference points when using a different CRS.
 
 <p align="center">
-  <img src="https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Inkscape_reference.png"
-alt="Inkscape"/>
+  <img src="https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Georeferencer.png"
+alt="Georeferencer"/>
 </p>
 
 Figure 2: Georeferencing a TL thin section image using reference crosses and the provided POINTS data set.
