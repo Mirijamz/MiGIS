@@ -158,6 +158,26 @@ Figure 1: Creating a spatial reference (cross layer) for thin sections in Inksca
 
 
 ### Georeference thin section imagery (QGIS Georeferencer)
+1.	Open a new QGIS project and adjust the project’s CRS: EPSG:32634 - WGS 84 / UTM zone 34N (matches [MiGIS_georef.points]( https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_georef.points)). If the template is not used, another metric CRS – for example the UTM system should be applied.
+
+2.	Open the raster [Georeferencer](https://docs.qgis.org/3.22/en/docs/user_manual/working_with_raster/georeferencer.html) in QGIS.
+
+3.	Import one of the referenced images (see [section above](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#stack-images--spatial-referencing-using-image-processing-software-inkscape)).
+
+4.	Import the [MiGIS_georef.points]( https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_georef.points) data set (see [Fig.2](https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Georeferencer.png)) or create a costum set of reference points when using a different CRS.
+
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Inkscape_reference.png"
+alt="Inkscape"/>
+</p>
+
+Figure 2: Georeferencing a TL thin section image using reference crosses and the provided POINTS data set.
+
+5.	Adjust settings (see. (see [Fig.2](https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Georeferencer.png)): Choose ‘Projective’ as transformation type, ‘Linear’ for Sampling and EPSG:32634 - WGS 84 / UTM zone for ‘CRS’. Do not adjust resolution or transparency of the output, but choose a directory for the georeferenced image.
+
+6.	Run the tool and repeat the process with the second and third image.
+
+7.	Validate georeferentiation output by comparing the georeferenced TL, XPL and RL raster in the QGIS window.
 
 
 ## MiGIS 1 preprocess TS images
