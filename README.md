@@ -119,9 +119,42 @@ When constructing each decision tree of the Random Forest, the Classifier will s
 
 •	If necessary, image brightness and contrast can be adjusted using raster image processing software (e.g. Adobe Photoshop, GIMP).
 
-NOTE: Keep the same scanning position for each thin section: the geometry of produced TL/ XPL/ RL imagery can vary according to the scan position on the scan pad. It is recommended to use a stencil (e.g. film holder for transmitted light scans). To avoid reflectance artifacts it could be helpful to turn all thin sections upside down. reflection artefacts will then appear where the sample label is positioned on the glass slide.
+**NOTE:** Keep the same scanning position for each thin section: the geometry of produced TL/ XPL/ RL imagery can vary according to the scan position on the scan pad. It is recommended to use a stencil (e.g. film holder for transmitted light scans). To avoid reflectance artifacts it could be helpful to turn all thin sections upside down. reflection artefacts will then appear where the sample label is positioned on the glass slide.
 
 ### Stack images & spatial referencing using image processing software (Inkscape)
+•	Use the transmitted light mode for TL (Transmitted Light) and XPL (Cross-Polarised Light) thin section scanning. Some flatbed scanner come with stencils (film-holder) to lock the scan object’s position, (e.g. dia slides or film). They can be helpful to keep the thin section in position.
+•	XPL scanning: One polarisation film is positioned below the thin section. The polarisation direction of the second film needs to be orthogonal (rotated 90°) to the first film to achieve cross-polarisation.
+•	Regular flatbed scanning can be applied to produce RL (Reflected Light) images. Using the film-holder and black (isotropic, non-reflective) film on top of the thin section.
+•	Choose high-resolution scanning mode (1200 dpi) without automated image adjustments.
+•	If necessary, image brightness and contrast can be adjusted using raster image processing software (e.g. Adobe Photoshop, GIMP).
+NOTE: Keep the same scanning position for each thin section: the geometry of produced TL/ XPL/ RL imagery can vary according to the scan position on the scan pad. It is recommended to use a stencil (e.g. film holder for transmitted light scans). To avoid reflectance artifacts it could be helpful to turn all thin sections upside down. reflection artefacts will then appear where the sample label is positioned on the glass slide.
+
+Create a spatial reference using image processing software (Inkscape)
+1.	Create a new Inkscape project or use the Inkscape project: [MiGIS_TS_ref_temp.svg](https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_TS_ref_temp.svg) and import all thin section images (1200 dpi).
+
+2.	Make sure to create additional layers for XPL and RL image or click on the mentioned layer in the template to import the specific image in the correct layer.
+
+**NOTE:** Do not modify the position of the reference crosses (Reference crosses layer) in the template (see [Fig. 1]( https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Inkscape_reference.png)), they match the georeference points in [MiGIS_georef.points]( https://github.com/Mirijamz/MiGIS-script/blob/main/MiGIS_georef.points). If a new Inkscape project was created, it is required to create a top layer with reference points.
+
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Inkscape_reference.png"
+alt="Creating reference crosses for the image dimensions in Inkscape and set TL image to 20-50% visibility"/>
+</p>
+
+3.	Change the transparency of the TL image to 50 - 20% visibility and lock the layer (see [Fig. 1]( https://github.com/Mirijamz/MiGIS-script/blob/main/Manual_figures/Inkscape_reference.png)).
+
+4.	Adjust the position/dimensions of the XPL image until it is congruent with the TL image.
+
+5.	Lock and hide the XPL image layer
+
+6.	Repeat the process with the RL image (alike XPL processing). Possibly the RL image will show some distortion as a result of different scan modes and light pass and needs to be stretched. Major distortions can cause artifacts in the classification result, keep them to a minimum.
+
+7.	Set the TL image visibility back to 100%.
+
+8.	Export the seperate images (Tl, XPL and RL layer) including the reference points (cross layer). The other two pictures or layer have to be deactivated (made invisible). 
+
+**NOTE:** Use RGB8 PNG export mode without compression, do not export with alpha channel (RGBA_8).
+
 
 ### Georeference thin section imagery (QGIS Georeferencer)
 
