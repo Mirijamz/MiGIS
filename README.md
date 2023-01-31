@@ -207,6 +207,7 @@ Figure 4: MiGIS 1 tool.
 
 ## MiGIS 2.1 train algorithm
 
+
 ## MiGIS 2.2 ROI evaluation [optional]
 
 ## MiGIS 3 classification
