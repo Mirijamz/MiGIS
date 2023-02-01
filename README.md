@@ -270,7 +270,7 @@ alt="ROI band boxplot"/>
 
 Figure 5: Boxplot showing ROI value distribution of one band per class.
 
-###Additional information
+### Additional information
 ### Input
 A vector training data set with ROI polygons (see [MiGIS 2.1]([https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_2_1.png](https://github.com/Mirijamz/MiGIS#migis-21-train-algorithm)) and a thin section multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS#migis-1-preprocess-ts-images)) is required.
 
@@ -307,13 +307,13 @@ alt="MiGIS_3"/>
 
 Figure 8: MiGIS 3 tool.
 
-###Additional information
-###Input
+### Additional information
+### Input
 **Classification model (.model):** Select the classification model trained in (MiGIS 2.1). However, a model trained on one raster can be applied on another multi-band raster (with the same bands - spectral information) which should then be selected (model file).
 
 **Clipped multi-band raster (AOI, .tif):** Select the thin section to be classified. Preferably, a clipped multi-band raster containing TL, XPL and RL bands. 
 
-###Output
+### Output
 **Classification map (.tif):** Classification result based on the selected training (model, classes)
 
 **Confidence map (.tif):** Displays certain vs. uncertain areas of the classification result
