@@ -206,9 +206,67 @@ Figure 4: MiGIS 1 tool.
 
 
 ## MiGIS 2.1 train algorithm
+Based on the created training areas (ROIs - Regions of Interest) and target raster a Random Forest classification model will created (MODEL file). A training data set can be added by editing (see [vector editing]( https://docs.qgis.org/3.22/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html?highlight=editing#)) a custom polygon shapefile (see [Creating a new shapefile](https://docs.qgis.org/2.18/en/docs/user_manual/managing_data_source/create_layers.html#creating-a-new-shapefile-layer)). In order to do straightforward accuracy assessment a second, independent reference data set with ROIs should be created (see [MiGIS 3](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-3-classification )). Ideally, the classification target is a TL/XPL and optional RL multi-band raster (see [section MiGIS 1](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-1-preprocess-ts-images)).
+
+
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_2_1.png"
+alt="MiGIS_2.1"/>
+</p>
+
+Figure 5: MiGIS 2.1 tool.
+
+**Note:**
+•	The component classes and sample observations should be determined under the microscope beforehand. 
+
+•	When collecting ROIs, it is recommendable to switch between the single TL, XPL and RL raster image for verification.
+
+•	The total amount of pixel per class (ROI polygon area) should be approximately equal. 
+
+•	A separate reference training dataset data set should be created by independent ROI collection.
+
+•	ROI validity per class can be estimated by running (see [section MiGIS 2.2](https://github.com/Mirijamz/MiGIS#migis-22-roi-evaluation-optional)).
+
+### Input
+**ROI layer (training data set, .shp):** Training data set (SHP format) with numeric (integer) class identification, class label field (text – string), and an ID field (integer) with unique values for the attributes (each ROI polygon). Minimum two classes per training data set.
+
+**Example attribute 1:**
+
+Id (field 1) = 23
+
+Class (field 2) = 1
+
+Class label (field 3) = clay coating
+
+
+**Example attribute 2:**
+
+Id (field 1) = 45
+
+Class (field 2) = 2
+
+Class label (field 3) = quartz
+
+
+**Class field (integer):** Select the class identifier field of the training data set. 
+
 
 
 ## MiGIS 2.2 ROI evaluation [optional]
+To facilitate ROI validation the tool computes HTML boxplot diagrams for each input band of the multi-band raster. Thus 1-9 boxplot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands.This illustrates pixel value distribution (polygon area median) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see[Example ROI boxplot]( https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/RHD_B7_2400_B8.html). Raw median pixel values per ROI polygon for each band are stored in a CSV table.
+
+**Note:** The column heads are b[bandnumber]_median and b[bandnumber]_stdev.
+
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_2_2.png"
+alt="MiGIS_2.2"/>
+</p>
+
+Figure 5: MiGIS 2.1 tool.
+
+### Input
+A vector training data set with ROI polygons (see [MiGIS 2.1]([https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_2_1.png](https://github.com/Mirijamz/MiGIS#migis-21-train-algorithm)) and a thin section multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS#migis-1-preprocess-ts-images)) is required.
+
 
 ## MiGIS 3 classification
 
