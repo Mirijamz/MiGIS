@@ -100,7 +100,11 @@ In micromorphology, different microscope light modes - PPL (Plane Polarized Ligh
 5.	After importing, all four parts of the toolbox are available in the QGIS ‘Processing toolbox’ (category ‘Scripts’, 'Python').
 
 ## Image classification basics & Random Forest Classifier
-Among others, Machine Learning supported semi-supervised image classification is used to produce remote sensing products such as land cover maps. By the integration of multispectral information, different surface types can be identified, sorted and extracted by the classifier. MiGIS follows a similar approach by using bundled spectral information from TL, XPL and RL imagery (see [Transmitted light scanning](https://github.com/Mirijamz/MiGIS/blob/main/README.md#transmitted-light-scanning-canon-canoscan-9000f-mark-ii)) as classification input. To do this, it is necessary to spatial reference the RGB scan images (see [Stack images & spatial referencing]( https://github.com/Mirijamz/MiGIS/blob/main/README.md#stack-images--spatial-referencing-using-image-processing-software-inkscape)), perform georeferentiation in QGIS (see [Georeference thin section imagery](https://github.com/Mirijamz/MiGIS/blob/main/README.md#georeference-thin-section-imagery-qgis-georeferencer)) and composite them to a multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-1-preprocess-ts-images)). Based on this data set, training areas (ROI - Regions of Interest) are collected using a costum vector polygon shapefile. Each ROI polygon should include an ID (unique, consecutive number) and be assigned to a user-defined class (one value per class). If necessary, a field with a class description (label) can be added. Each classification process requires at least two classes, each with a minimum of one ROI polygon. The selected area of each ROI polygon determines the number of pixels used for training the respective class. Each class should include approximately equal numbers of ROIs (pixel counts). Also, misclassifications might occur due to abundant similarity of pixel values between separate classes. ROI validity can be estimated before the actual classification by running [MiGIS 2.2](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-22-roi-evaluation-optional). Based on the training dataset a Random Forest classification model can be produced using [MiGIS 2.1](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-21-train-algorithm). After running the classification in [MiGIS 3](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-22-roi-evaluation-optional) its accuracy can be assessed when a reference training data set is provided and accordingly by the evaluation of the confusion matrix. Produced classification models can also be applied to other thin section scans. However, increased variation concerning sediment composition, embedding resin and thin section thickness, and image acquisition may produce misclassifications. 
+Among others, Machine Learning supported semi-supervised image classification is used to produce remote sensing products such as land cover maps. By the integration of multispectral information, different surface types can be identified, sorted and extracted by the classifier. MiGIS follows a similar approach by using bundled spectral information from TL, XPL and RL imagery (see [Transmitted light scanning](https://github.com/Mirijamz/MiGIS/blob/main/README.md#transmitted-light-scanning-canon-canoscan-9000f-mark-ii)) as classification input. To do this, it is necessary to spatial reference the RGB scan images (see [Stack images & spatial referencing]( https://github.com/Mirijamz/MiGIS/blob/main/README.md#stack-images--spatial-referencing-using-image-processing-software-inkscape)), perform georeferentiation in QGIS (see [Georeference thin section imagery](https://github.com/Mirijamz/MiGIS/blob/main/README.md#georeference-thin-section-imagery-qgis-georeferencer)) and composite them to a multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-1-preprocess-ts-images)). 
+
+Based on this data set, training areas (ROI - Regions of Interest) are collected using a costum vector polygon shapefile. ROI polygons mark a subsample of thin section components, each class should contain a set of exemplars e.g of quartz. The classifier will take this examples to learn and to create a classification model. Each ROI polygon should include an ID (unique, consecutive number) and be assigned to a user-defined class (one value per class). If necessary, a field with a class description (label) can be added. Each classification process requires at least two classes, each with a minimum of one ROI polygon. The selected area of each ROI polygon determines the number of pixels used for training the respective class. Each class should include approximately equal numbers of ROIs (pixel counts). Also, misclassifications might occur due to abundant similarity of pixel values between separate classes. 
+
+ROI validity can be estimated before the actual classification by running [MiGIS 2.2](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-22-roi-evaluation-optional). Based on the training dataset a Random Forest classification model can be produced using [MiGIS 2.1](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-21-train-algorithm). After running the classification in [MiGIS 3](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-22-roi-evaluation-optional) its accuracy can be assessed when a reference training data set is provided and accordingly by the evaluation of the confusion matrix. Produced classification models can also be applied to other thin section scans. However, increased variation concerning sediment composition, embedding resin and thin section thickness, and image acquisition may produce misclassifications. 
 
 MiGIS applies Scikit-learn Random Forest classifier with a fixed number of 100 trees. Splitting is performed at each internal tree node using the square root of the number of features e.g. max_features = sqrt(n_features):
 
@@ -217,6 +221,7 @@ alt="MiGIS_2.1"/>
 Figure 5: MiGIS 2.1 tool.
 
 **Note:**
+
 •	The component classes and sample observations should be determined under the microscope beforehand. 
 
 •	When collecting ROIs, it is recommendable to switch between the single TL, XPL and RL raster image for verification.
@@ -253,22 +258,50 @@ Class label (field 3) = quartz
 
 
 ## MiGIS 2.2 ROI evaluation [optional]
-To facilitate ROI validation the tool computes HTML boxplot diagrams for each input band of the multi-band raster. Thus 1-9 boxplot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands.This illustrates pixel value distribution (polygon area median) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see[Example ROI boxplot]( https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/RHD_B7_2400_B8.html). Raw median pixel values per ROI polygon for each band are stored in a CSV table.
+To facilitate ROI validation the tool computes HTML boxplot diagrams for each input band of the multi-band raster. Thus 1-9 boxplot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands.This illustrates pixel value distribution (polygon area median) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see Fig. 5 and [ROI boxplot example]( https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/RHD_B7_2400_B8.html). Raw median pixel values per ROI polygon for each band are stored in a CSV table.
 
 **Note:** The column heads are b[bandnumber]_median and b[bandnumber]_stdev.
+
+
+<p align="center">
+  <img src="[https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_2_2.png](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/B7_b8.png)"
+alt="ROI band boxplot"/>
+</p>
+
+Figure 5: Boxplot showing ROI value distribution of one band per class.
+
+### Input
+A vector training data set with ROI polygons (see [MiGIS 2.1]([https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_2_1.png](https://github.com/Mirijamz/MiGIS#migis-21-train-algorithm)) and a thin section multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS#migis-1-preprocess-ts-images)) is required.
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_2_2.png"
 alt="MiGIS_2.2"/>
 </p>
 
-Figure 5: MiGIS 2.1 tool.
-
-### Input
-A vector training data set with ROI polygons (see [MiGIS 2.1]([https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_2_1.png](https://github.com/Mirijamz/MiGIS#migis-21-train-algorithm)) and a thin section multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS#migis-1-preprocess-ts-images)) is required.
+Figure 6: MiGIS 2.1 tool.
 
 
 ## MiGIS 3 classification
+Based on a trained classification model from part 2 ,a classification map, confidence map, confusion matrix, and spatial statistics out of the classification result will be computed. The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
+•	In a further step, area statistics can also be created for the classes based on the classification map.
+
+•	To run the prediction and to produce the classification map one of the clipped multi-band raster (including the TL, XPL and optional RL image) is required. 
+
+•	It is also recommended to limit the classification area as much as possible to the sample section extent by using a clipped multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS#migis-1-preprocess-ts-images)). 
+
+•	The confusion matrix requires a second reference (independent) training data set with identical fields as the original training data set e.g. ID, Class, Class No, identical classes and labels, but a second set of ROIs.
+
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_3.png"
+alt="MiGIS_3"/>
+</p>
+
+Figure 6: MiGIS 3 tool.
+
+###Input
+
+###Output
+
 
 ## References
 Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32
