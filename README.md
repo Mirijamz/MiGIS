@@ -264,12 +264,13 @@ To facilitate ROI validation the tool computes HTML boxplot diagrams for each in
 
 
 <p align="center">
-  <img src="[https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_2_2.png](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/B7_b8.png)"
+  <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/B7_b8.png"
 alt="ROI band boxplot"/>
 </p>
 
 Figure 5: Boxplot showing ROI value distribution of one band per class.
 
+###Additional information
 ### Input
 A vector training data set with ROI polygons (see [MiGIS 2.1]([https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_2_1.png](https://github.com/Mirijamz/MiGIS#migis-21-train-algorithm)) and a thin section multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS#migis-1-preprocess-ts-images)) is required.
 
@@ -282,7 +283,15 @@ Figure 6: MiGIS 2.1 tool.
 
 
 ## MiGIS 3 classification
-Based on a trained classification model from part 2 ,a classification map, confidence map, confusion matrix, and spatial statistics out of the classification result will be computed. The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
+Based on a trained classification model from part 2 ,a classification map (see [Fig. 7](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)), confidence map, confusion matrix, and spatial statistics (see [Fig. 7](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)) out of the classification result will be computed. The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
+
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png"
+alt="ClaM"/>
+</p>
+
+Figure 7: Exemplary classification map and spatial statistics.
+
 •	In a further step, area statistics can also be created for the classes based on the classification map.
 
 •	To run the prediction and to produce the classification map one of the clipped multi-band raster (including the TL, XPL and optional RL image) is required. 
@@ -296,11 +305,24 @@ Based on a trained classification model from part 2 ,a classification map, confi
 alt="MiGIS_3"/>
 </p>
 
-Figure 6: MiGIS 3 tool.
+Figure 8: MiGIS 3 tool.
 
+###Additional information
 ###Input
+**Classification model (.model):** Select the classification model trained in (MiGIS 2.1). However, a model trained on one raster can be applied on another multi-band raster (with the same bands - spectral information) which should then be selected (model file).
+
+**Clipped multi-band raster (AOI, .tif):** Select the thin section to be classified. Preferably, a clipped multi-band raster containing TL, XPL and RL bands. 
 
 ###Output
+**Classification map (.tif):** Classification result based on the selected training (model, classes)
+
+**Confidence map (.tif):** Displays certain vs. uncertain areas of the classification result
+
+**Confusion matrix:** Based on the matrix, classification accuracy statistics as overall accuracy, Kappa Coefficient (Cohen's Kappa), producer and user accuracy can be calculated (see Congalton & Green 2019).
+
+**Class area in m² - class labels incl. (.csv):** Required output. Produces class-based area statistics to determine the quantity ratio of the classified components and the porosity (if such a class was created). Class labels (description) are provided in an additional column.
+
+**Class area in m² (.csv):** optional output. Numeric class identifier column only. Produces class-based area statistics to determine the quantity ratio of the classified components and the porosity.
 
 
 ## References
