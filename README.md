@@ -63,19 +63,19 @@ doi={XXXX}
 
 # Detailed instructions
 
-### Required hardware
+### 1. Hardware
 •	Transmitted light scanner/ film scanner or similiar hardware to capture thin sections
 
 •	2x polarisation film for XPL imagery, 1x black opaque film for RL imagery
 
 •	QGIS-capable computer (min.: 8GB RAM, 100GB free storage, CPU with 4 cores)
 
-### Software
+### 2. Software
 •	For digital image preprocessing: Inkscape (current: Inkscape 1.1.2)
 
 •	GIS software: QGIS 3 (current: QGIS 3.22)
 
-### Skills
+### 3. Required skills
 •	GIS (QGIS) experience: navigate the GUI, Georeference raster data, create and edit vector data (polygons)
 
 •	Basic knowledge of semi-automated image classification and accuracy assessment
@@ -84,10 +84,10 @@ doi={XXXX}
 
 •	Good training in micromorphology
 
-### Micromorphological thin section scans
+### 4. Micromorphological thin section scans
 In micromorphology, different microscope light modes - PPL (Plane Polarized Light), XPL (Cross Polarised Light) and OIL (Oblique Incident Light) - are used to distinguish thin section components (e.g. minerals) by their specific light refraction properties in different polarisation modes. Using transmitted light scanning, the analytical oppurtunities of petrographic microscopy can be obtained for an entire thin section. PPL can be acquired by capturing the plain thin section in transmitted light scanning mode (TL - Transmitted Light). For XPL, two orthogonally aligned polarisation films (90° orientation offset) are added on top and below the thin section. Using ordinary flatbed scanning and a black (isotropic) film on top of the thin section, a RL (Reflected Light) image can be produced which is similar to OIL imagery.
 
-## MiGIS integration (QGIS)
+## 5. MiGIS integration (QGIS 3)
 1.	Install the Dzetsaka Classification Plugin in QGIS (go to ‘Plugins’ and select ‘Manage and install plugins’).
 2.	Install the Python machine learning library ‘scikit-learn’ using OSGeo shell (QGIS command line) typing:
 
@@ -99,7 +99,7 @@ In micromorphology, different microscope light modes - PPL (Plane Polarized Ligh
 4.	Import the MiGIS Python scripts to your QGIS Project (Python symbol ([Python processing script](https://docs.qgis.org/3.22/en/docs/user_manual/processing/toolbox.html)) in ‘Processing toolbox’ tab) by ‘Adding Script to Toolbox’.
 5.	After importing, all four parts of the toolbox are available in the QGIS ‘Processing toolbox’ (category ‘Scripts’, 'Python').
 
-## Image classification basics & Random Forest Classifier
+## 6. Image classification basics & Random Forest classifier
 Among others, Machine Learning supported semi-supervised image classification is used to produce remote sensing products such as land cover maps. By the integration of multispectral information, different surface types can be identified, sorted and extracted by the classifier. MiGIS follows a similar approach by using bundled spectral information from TL, XPL and RL imagery (see [Transmitted light scanning](https://github.com/Mirijamz/MiGIS/blob/main/README.md#transmitted-light-scanning-canon-canoscan-9000f-mark-ii)) as classification input. To do this, it is necessary to spatial reference the RGB scan images (see [Stack images & spatial referencing]( https://github.com/Mirijamz/MiGIS/blob/main/README.md#stack-images--spatial-referencing-using-image-processing-software-inkscape)), perform georeferentiation in QGIS (see [Georeference thin section imagery](https://github.com/Mirijamz/MiGIS/blob/main/README.md#georeference-thin-section-imagery-qgis-georeferencer)) and composite them to a multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-1-preprocess-ts-images)). 
 
 Based on this data set, training areas (ROI - Regions of Interest) are collected using a costum vector polygon shapefile. ROI polygons mark a subsample of thin section components, each class should contain a set of exemplars e.g of quartz. The classifier will take this examples to learn and to create a classification model. Each ROI polygon should include an ID (unique, consecutive number) and be assigned to a user-defined class (one value per class). If necessary, a field with a class description (label) can be added. Each classification process requires at least two classes, each with a minimum of one ROI polygon. The selected area of each ROI polygon determines the number of pixels used for training the respective class. Each class should include approximately equal numbers of ROIs (pixel counts). Also, misclassifications might occur due to abundant similarity of pixel values between separate classes. 
@@ -112,9 +112,9 @@ When constructing each decision tree of the Random Forest, the Classifier will s
 
 
 
-## Preprocessing
+## 7. Preprocessing
 
-### Transmitted light scanning (Canon Canoscan 9000F Mark II)
+### 7.1 Transmitted light scanning (Canon Canoscan 9000F Mark II)
 •	Use the transmitted light mode for TL (Transmitted Light) and XPL (Cross-Polarised Light) thin section scanning. Some flatbed scanner come with stencils (film-holder) to lock the scan object’s position, (e.g. dia slides or film). They can be helpful to keep the thin section in position.
 
 •	XPL scanning: One polarisation film is positioned below the thin section. The polarisation direction of the second film needs to be orthogonal (rotated 90°) to the first film to achieve cross-polarisation.
@@ -127,15 +127,7 @@ When constructing each decision tree of the Random Forest, the Classifier will s
 
 **NOTE:** Keep the same scanning position for each thin section: the geometry of produced TL/ XPL/ RL imagery can vary according to the scan position on the scan pad. It is recommended to use a stencil (e.g. film holder for transmitted light scans). To avoid reflectance artifacts it could be helpful to turn all thin sections upside down. reflection artefacts will then appear where the sample label is positioned on the glass slide.
 
-### Stack images & spatial referencing using image processing software (Inkscape)
-•	Use the transmitted light mode for TL (Transmitted Light) and XPL (Cross-Polarised Light) thin section scanning. Some flatbed scanner come with stencils (film-holder) to lock the scan object’s position, (e.g. dia slides or film). They can be helpful to keep the thin section in position.
-•	XPL scanning: One polarisation film is positioned below the thin section. The polarisation direction of the second film needs to be orthogonal (rotated 90°) to the first film to achieve cross-polarisation.
-•	Regular flatbed scanning can be applied to produce RL (Reflected Light) images. Using the film-holder and black (isotropic, non-reflective) film on top of the thin section.
-•	Choose high-resolution scanning mode (1200 dpi) without automated image adjustments.
-•	If necessary, image brightness and contrast can be adjusted using raster image processing software (e.g. Adobe Photoshop, GIMP).
-NOTE: Keep the same scanning position for each thin section: the geometry of produced TL/ XPL/ RL imagery can vary according to the scan position on the scan pad. It is recommended to use a stencil (e.g. film holder for transmitted light scans). To avoid reflectance artifacts it could be helpful to turn all thin sections upside down. reflection artefacts will then appear where the sample label is positioned on the glass slide.
-
-Create a spatial reference using image processing software (Inkscape)
+### 7.2 Stack images & spatial referencing using image processing software (Inkscape)
 1.	Create a new Inkscape project or use the Inkscape project: [MiGIS_TS_ref_temp.svg](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_TS_ref_temp.svg) and import all thin section images (1200 dpi).
 
 2.	Make sure to create additional layers for XPL and RL image or click on the mentioned layer in the template to import the specific image in the correct layer.
@@ -163,7 +155,7 @@ Figure 1: Creating a spatial reference (cross layer) for thin sections in Inksca
 **NOTE:** Use RGB8 PNG export mode without compression, do not export with alpha channel (RGBA_8).
 
 
-### Georeference thin section imagery (QGIS Georeferencer)
+### 7.3 Georeference thin section imagery (QGIS Georeferencer)
 1.	Open a new QGIS project and adjust the project’s CRS: EPSG:32634 - WGS 84 / UTM zone 34N (matches [MiGIS_georef.points]( https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_georef.points)). If the template is not used, another metric CRS – for example the UTM system should be applied.
 
 2.	Open the raster [Georeferencer](https://docs.qgis.org/3.22/en/docs/user_manual/working_with_raster/georeferencer.html) in QGIS.
@@ -186,7 +178,7 @@ Figure 2: Georeferencing a TL thin section image using reference crosses and the
 7.	Validate georeferentiation output by comparing the georeferenced TL, XPL and RL raster in the QGIS window.
 
 
-## MiGIS 1 preprocess TS images
+## 8. MiGIS 1 preprocess TS images
 In a first step, the multi-band raster is created, by merging the georeferenced thin section images. The bundled spectral information is the target for later classification. To create the image stack or multi-band raster the tool merges the input RGB bands (TL, XPL, and opt. RL). As a result the multi-band raster will contain 6 (TL + XPL RGB image) or 9 (TL + XPL + RL RGB image) bands. The classification area can be narrowed down by using a clipping layer which matches the outlines of the sample section area (see result in [Fig. 3](github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MBR_MBRC.png). This step will enable precise area statistics and minimises the computational effort.
 
 <p align="center">
@@ -209,7 +201,7 @@ alt="MiGIS_1"/>
 Figure 4: MiGIS 1 tool.
 
 
-## MiGIS 2.1 train algorithm
+## 9. MiGIS 2.1 train algorithm
 Based on the created training areas (ROIs - Regions of Interest) and target raster a Random Forest classification model will created (MODEL file). A training data set can be added by editing (see [vector editing]( https://docs.qgis.org/3.22/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html?highlight=editing#)) a custom polygon shapefile (see [Creating a new shapefile](https://docs.qgis.org/2.18/en/docs/user_manual/managing_data_source/create_layers.html#creating-a-new-shapefile-layer)). In order to do straightforward accuracy assessment a second, independent reference data set with ROIs should be created (see [MiGIS 3](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-3-classification )). Ideally, the classification target is a TL/XPL and optional RL multi-band raster (see [section MiGIS 1](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-1-preprocess-ts-images)).
 
 
@@ -257,7 +249,7 @@ Class label (field 3) = quartz
 
 
 
-## MiGIS 2.2 ROI evaluation [optional]
+## 10. MiGIS 2.2 ROI evaluation [optional]
 To facilitate ROI validation the tool computes HTML boxplot diagrams for each input band of the multi-band raster. Thus 1-9 boxplot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands.This illustrates pixel value distribution (polygon area median) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see Fig. 5 and [ROI boxplot example]( https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/RHD_B7_2400_B8.html). Raw median pixel values per ROI polygon for each band are stored in a CSV table.
 
 **Note:** The column heads are b[bandnumber]_median and b[bandnumber]_stdev.
@@ -282,7 +274,7 @@ alt="MiGIS_2.2"/>
 Figure 6: MiGIS 2.1 tool.
 
 
-## MiGIS 3 classification
+## 11. MiGIS 3 classification
 Based on a trained classification model from part 2 ,a classification map (see [Fig. 7](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)), confidence map, confusion matrix, and spatial statistics (see [Fig. 7](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)) out of the classification result will be computed. The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
 
 <p align="center">
@@ -325,7 +317,7 @@ Figure 8: MiGIS 3 tool.
 **Class area in m² (.csv):** optional output. Numeric class identifier column only. Produces class-based area statistics to determine the quantity ratio of the classified components and the porosity.
 
 
-## References
+## 12. References
 Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32
 
 Congalton, R., Green, K., 2019. Assessing the Accuracy of Remotely Sensed Data. CRS Press, Boca Raton. https://doi.org/10.1201/9780429052729
