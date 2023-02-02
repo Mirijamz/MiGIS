@@ -10,7 +10,7 @@ alt="MiGIS-Workflow"/>
 MiGIS was developed for digital spatial analysis and composition classification of soil and sediment thin sections in QGIS 3 3. The plugin is divided in three main parts to pre-process in [MiGIS 1](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_1_preprocess.py), train [MiGIS 2.1](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_2-1_train_algorithm.py) and classify [MiGIS 3](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_3_classification.py). In addition, training data set validity can be assessed in [MiGIS 2.2](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_2-2_ROI_eval.py). [Detailed processing](https://github.com/Mirijamz/MiGIS/tree/main#detailed-instructions) is described below, but summarised in the following.
 
 ### Integrate MiGIS into QGIS
-The toolbox can be easily integrated into QGIS as a [Python processing script](https://docs.qgis.org/3.22/en/docs/user_manual/processing/toolbox.html). Besides native QGIS and GDAL geoprocessing algorithms, MiGIS also applies parts of the [Dzetsaka classification plugin for QGIS](https://github.com/nkarasiak/dzetsaka) (see Karasiak 2016). The Dzetsaka plugin must separately be added via the [QGIS extension manager]( https://docs.qgis.org/3.22/en/docs/training_manual/qgis_plugins/fetching_plugins.html). The Random Forest classifier, integrated via Dzetsaka, runs with the Python scipy library, thus scikit-learn (see Pedregosa et al. 2011) must be installed via the OSGeo shell (see [Dzetsaka classification plugin manual](https://github.com/nkarasiak/dzetsaka/blob/master/readme.md).
+The toolbox can be easily integrated into QGIS as a [Python processing script](https://docs.qgis.org/3.22/en/docs/user_manual/processing/toolbox.html). Besides native QGIS 3 (QGIS Development Team, 2022) and GDAL (GDAL/OGR contributors 2022) geoprocessing algorithms, MiGIS also applies parts of the [Dzetsaka classification plugin for QGIS](https://github.com/nkarasiak/dzetsaka) (see Karasiak 2016). The Dzetsaka plugin must be added separately via the [QGIS extension manager]( https://docs.qgis.org/3.22/en/docs/training_manual/qgis_plugins/fetching_plugins.html). The Random Forest classifier, integrated via Dzetsaka, runs with the Python scipy library, thus scikit-learn (see Pedregosa et al. 2011) must be installed via the OSGeo shell (see [Dzetsaka classification plugin manual](https://github.com/nkarasiak/dzetsaka/blob/master/readme.md).
 Commands for QGIS > 3.22:
 
 `o4w_env`
@@ -62,6 +62,36 @@ doi={XXXX}
 
 
 # Detailed instructions
+1.	[Hardware](https://github.com/Mirijamz/MiGIS/blob/main/README.md#1-hardware)
+
+2.	[Software](https://github.com/Mirijamz/MiGIS/blob/main/README.md#2-software)
+
+3.	[Required skills](https://github.com/Mirijamz/MiGIS/blob/main/README.md#3-required-skills)
+
+4.	[Micromorphological thin section scans](https://github.com/Mirijamz/MiGIS/blob/main/README.md#4-micromorphological-thin-section-scans)
+
+5.	[MiGIS integration (QGIS 3)](https://github.com/Mirijamz/MiGIS/blob/main/README.md#5-migis-integration-qgis-3)
+
+6.	[Image classification basics & Random Forest classifier](https://github.com/Mirijamz/MiGIS/blob/main/README.md#6-image-classification-basics--random-forest-classifier)
+
+7.	[Preprocessing](https://github.com/Mirijamz/MiGIS/blob/main/README.md#7-preprocessing)
+
+  7.1	[Transmitted light scanning (Canon Canoscan 9000F Mark II)](https://github.com/Mirijamz/MiGIS/blob/main/README.md#71-transmitted-light-scanning-canon-canoscan-9000f-mark-ii)
+
+  7.2	[Stack images & spatial referencing using image processing software (Inkscape)](https://github.com/Mirijamz/MiGIS/blob/main/README.md#72-stack-images--spatial-referencing-using-image-processing-software-inkscape)
+
+  7.3	[Georeference thin section imagery (QGIS Georeferencer)](https://github.com/Mirijamz/MiGIS/blob/main/README.md#73-georeference-thin-section-imagery-qgis-georeferencer)
+
+8	[MiGIS 1 preprocess TS images](https://github.com/Mirijamz/MiGIS/blob/main/README.md#8-migis-1-preprocess-ts-images)
+
+9	[MiGIS 2.1 train algorithm](https://github.com/Mirijamz/MiGIS/blob/main/README.md#9-migis-21-train-algorithm)
+
+10	[MiGIS 2.2 ROI evaluation [optional]](https://github.com/Mirijamz/MiGIS/blob/main/README.md#10-migis-22-roi-evaluation-optional)
+
+11	[MiGIS 3 classification](https://github.com/Mirijamz/MiGIS/blob/main/README.md#11-migis-3-classification)
+
+12	[References](https://github.com/Mirijamz/MiGIS/blob/main/README.md#12-references)
+
 
 ### 1. Hardware
 •	Transmitted light scanner/ film scanner or similiar hardware to capture thin sections
@@ -275,7 +305,7 @@ Figure 6: MiGIS 2.1 tool.
 
 
 ## 11. MiGIS 3 classification
-Based on a trained classification model from part 2 ,a classification map (see [Fig. 7](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)), confidence map, confusion matrix, and spatial statistics (see [Fig. 7](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)) out of the classification result will be computed. The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
+Based on a trained classification model from part 2 a classification map (see [Fig. 7](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)), confidence map, confusion matrix, and spatial statistics (see [Fig. 7](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png))  will be computed out of the classification result (classification map). The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png"
@@ -322,9 +352,7 @@ Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32
 
 Congalton, R., Green, K., 2019. Assessing the Accuracy of Remotely Sensed Data. CRS Press, Boca Raton. https://doi.org/10.1201/9780429052729
 
-GDAL/OGR contributors 2022. GDAL/OGR Geospatial Data Abstraction software Library. Open Source Geospatial Foundation. https://gdal.org , DOI: 10.5281/zenodo.5884351
-
-Karasiak, N., 2021. Documentation: Dzetsaka Qgis Classification plugin: https://github.com/nkarasiak/dzetsaka/, 2022-05-04
+GDAL/OGR contributors, 2022. GDAL/OGR Geospatial Data Abstraction software Library. Open Source Geospatial Foundation. https://gdal.org , DOI: 10.5281/zenodo.5884351
 
 Karasiak, N., 2016. Dzetsaka Qgis Classification plugin. DOI:10.5281/zenodo.2552284, 2021-04-01
 
@@ -333,6 +361,3 @@ Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O.,
 QGIS Development Team, 2022. QGIS Geographic Information System, Version 3.22. Open Source Geospatial Foundation. https://www.qgis.org/en/site/index.html , 2022-05-04
 
 Scikit-learn developers, 2007-2022. User guide: 1.11.2. Forests of randomized trees. https://scikit-learn.org/stable/modules/ensemble.html#forest, 2022-05-04
-
-
-
