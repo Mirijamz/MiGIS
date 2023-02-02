@@ -231,7 +231,15 @@ Figure 4: MiGIS 1 tool.
 
 
 ## 9. MiGIS 2.1 train algorithm
-Based on the created training areas (ROIs - Regions of Interest) and target raster a Random Forest classification model will created (MODEL file). A training data set can be added by editing (see [vector editing]( https://docs.qgis.org/3.22/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html?highlight=editing#)) a custom polygon shapefile (see [Creating a new shapefile](https://docs.qgis.org/2.18/en/docs/user_manual/managing_data_source/create_layers.html#creating-a-new-shapefile-layer)). In order to do straightforward accuracy assessment a second, independent reference data set with ROIs should be created (see [MiGIS 3](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-3-classification )). Ideally, the classification target is a TL/XPL and optional RL multi-band raster (see [section MiGIS 1](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-1-preprocess-ts-images)).
+Based on the created training areas (see Fig. 5 [ROIs](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROIs.png) - Regions of Interest) and target raster a Random Forest classification model will created (MODEL file). A training data set can be added by editing (see [vector editing]( https://docs.qgis.org/3.22/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html?highlight=editing#)) a custom polygon shapefile (see [Creating a new shapefile](https://docs.qgis.org/2.18/en/docs/user_manual/managing_data_source/create_layers.html#creating-a-new-shapefile-layer)). 
+
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROIs.png"
+alt="Inkscape"/>
+</p>
+Figure 5: ROI polygon examples.
+
+For straightforward accuracy assessment a second, independent reference data set with ROIs should be created (see [MiGIS 3](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-3-classification )). Ideally, the classification target is a TL/XPL and optional RL multi-band raster (see [section MiGIS 1](https://github.com/Mirijamz/MiGIS-script/blob/main/README.md#migis-1-preprocess-ts-images)).
 
 
 <p align="center">
@@ -239,7 +247,7 @@ Based on the created training areas (ROIs - Regions of Interest) and target rast
 alt="MiGIS_2.1"/>
 </p>
 
-Figure 5: MiGIS 2.1 tool.
+Figure 6: MiGIS 2.1 tool.
 
 **Note:**
 
@@ -279,7 +287,7 @@ Class label (field 3) = quartz
 
 
 ## 10. MiGIS 2.2 ROI evaluation [optional]
-To facilitate ROI validation the tool computes HTML boxplot diagrams for each input band of the multi-band raster. Thus 1-9 boxplot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands.This illustrates pixel value distribution (polygon area median) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see Fig. 5 and [ROI boxplot example]( https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROI_boxpolot_exp.png). Raw median pixel values per ROI polygon for each band are stored in a CSV table.
+To facilitate ROI validation the tool computes HTML boxplot diagrams for each input band of the multi-band raster. Thus 1-9 boxplot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands.This illustrates pixel value distribution (polygon area median) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see Fig. 6 and [ROI boxplot example]( https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROI_boxpolot_exp.png). Raw median pixel values per ROI polygon for each band are stored in a CSV table.
 
 **Note:** The column heads are b[bandnumber]_median and b[bandnumber]_stdev.
 
@@ -289,7 +297,7 @@ To facilitate ROI validation the tool computes HTML boxplot diagrams for each in
 alt="ROI band boxplot"/>
 </p>
 
-Figure 5: Boxplot showing ROI value distribution of one band per class.
+Figure 6: Boxplot showing ROI value distribution of one band per class.
 
 ### Additional information
 ### Input
@@ -300,18 +308,18 @@ A vector training data set with ROI polygons (see [MiGIS 2.1]([https://github.co
 alt="MiGIS_2.2"/>
 </p>
 
-Figure 6: MiGIS 2.1 tool.
+Figure 7: MiGIS 2.1 tool.
 
 
 ## 11. MiGIS 3 classification
-Based on a trained classification model from part 2 a classification map (see [Fig. 7](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)), confidence map, confusion matrix, and spatial statistics (see [Fig. 7](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png))  will be computed out of the classification result (classification map). The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
+Based on a trained classification model from part 2 a classification map (see [Fig. 8](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)), confidence map, confusion matrix, and spatial statistics (see [Fig. 8](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png))  will be computed out of the classification result (classification map). The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png"
 alt="ClaM"/>
 </p>
 
-Figure 7: Exemplary classification map and spatial statistics.
+Figure 8: Exemplary classification map and spatial statistics.
 
 •	In a further step, area statistics can also be created for the classes based on the classification map.
 
@@ -319,14 +327,22 @@ Figure 7: Exemplary classification map and spatial statistics.
 
 •	It is also recommended to limit the classification area as much as possible to the sample section extent by using a clipped multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS#migis-1-preprocess-ts-images)). 
 
-•	The confusion matrix requires a second reference (independent) training data set with identical fields as the original training data set e.g. ID, Class, Class No, identical classes and labels, but a second set of ROIs.
+•	The confusion matrix (see [Fig.9](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Confusion_exp.png)) requires a second reference (independent) training data set with identical fields as the original training data set e.g. ID, Class, Class No, identical classes and labels, but a second set of ROIs.
+
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Confusion_exp.png"
+alt="Confi"/>
+</p>
+
+Figure 9: Exemplary confusion matrix and selected accuracy parameters (see Congalton & Green 2019)
+
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_3.png"
 alt="MiGIS_3"/>
 </p>
 
-Figure 8: MiGIS 3 tool.
+Figure 10: MiGIS 3 tool.
 
 ### Additional information
 ### Input
