@@ -279,13 +279,13 @@ Class label (field 3) = quartz
 
 
 ## 10. MiGIS 2.2 ROI evaluation [optional]
-To facilitate ROI validation the tool computes HTML boxplot diagrams for each input band of the multi-band raster. Thus 1-9 boxplot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands.This illustrates pixel value distribution (polygon area median) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see Fig. 5 and [ROI boxplot example]( https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/RHD_B7_2400_B8.html). Raw median pixel values per ROI polygon for each band are stored in a CSV table.
+To facilitate ROI validation the tool computes HTML boxplot diagrams for each input band of the multi-band raster. Thus 1-9 boxplot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands.This illustrates pixel value distribution (polygon area median) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see Fig. 5 and [ROI boxplot example]( https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROI_boxpolot_exp.png). Raw median pixel values per ROI polygon for each band are stored in a CSV table.
 
 **Note:** The column heads are b[bandnumber]_median and b[bandnumber]_stdev.
 
 
 <p align="center">
-  <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/B7_b8.png"
+  <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROI_boxpolot_exp.png"
 alt="ROI band boxplot"/>
 </p>
 
