@@ -76,21 +76,21 @@ doi={XXXX}
 
 7.	[Preprocessing](https://github.com/Mirijamz/MiGIS/blob/main/README.md#7-preprocessing)
 
-  7.1	[Transmitted light scanning (Canon Canoscan 9000F Mark II)](https://github.com/Mirijamz/MiGIS/blob/main/README.md#71-transmitted-light-scanning-canon-canoscan-9000f-mark-ii)
+7.1	[Transmitted light scanning (Canon Canoscan 9000F Mark II)](https://github.com/Mirijamz/MiGIS/blob/main/README.md#71-transmitted-light-scanning-canon-canoscan-9000f-mark-ii)
 
-  7.2	[Stack images & spatial referencing using image processing software (Inkscape)](https://github.com/Mirijamz/MiGIS/blob/main/README.md#72-stack-images--spatial-referencing-using-image-processing-software-inkscape)
+7.2	[Stack images & spatial referencing using image processing software (Inkscape)](https://github.com/Mirijamz/MiGIS/blob/main/README.md#72-stack-images--spatial-referencing-using-image-processing-software-inkscape)
 
-  7.3	[Georeference thin section imagery (QGIS Georeferencer)](https://github.com/Mirijamz/MiGIS/blob/main/README.md#73-georeference-thin-section-imagery-qgis-georeferencer)
+7.3	[Georeference thin section imagery (QGIS Georeferencer)](https://github.com/Mirijamz/MiGIS/blob/main/README.md#73-georeference-thin-section-imagery-qgis-georeferencer)
 
-8	[MiGIS 1 preprocess TS images](https://github.com/Mirijamz/MiGIS/blob/main/README.md#8-migis-1-preprocess-ts-images)
+8.	[MiGIS 1 preprocess TS images](https://github.com/Mirijamz/MiGIS/blob/main/README.md#8-migis-1-preprocess-ts-images)
 
-9	[MiGIS 2.1 train algorithm](https://github.com/Mirijamz/MiGIS/blob/main/README.md#9-migis-21-train-algorithm)
+9.	[MiGIS 2.1 train algorithm](https://github.com/Mirijamz/MiGIS/blob/main/README.md#9-migis-21-train-algorithm)
 
-10	[MiGIS 2.2 ROI evaluation [optional]](https://github.com/Mirijamz/MiGIS/blob/main/README.md#10-migis-22-roi-evaluation-optional)
+10.	[MiGIS 2.2 ROI evaluation [optional]](https://github.com/Mirijamz/MiGIS/blob/main/README.md#10-migis-22-roi-evaluation-optional)
 
-11	[MiGIS 3 classification](https://github.com/Mirijamz/MiGIS/blob/main/README.md#11-migis-3-classification)
+11.	[MiGIS 3 classification](https://github.com/Mirijamz/MiGIS/blob/main/README.md#11-migis-3-classification)
 
-12	[References](https://github.com/Mirijamz/MiGIS/blob/main/README.md#12-references)
+12.	[References](https://github.com/Mirijamz/MiGIS/blob/main/README.md#12-references)
 
 
 ### 1. Hardware
