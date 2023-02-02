@@ -1,5 +1,4 @@
-# MiGIS toolbox manual
-MiGIS toolbox for QGIS 3 - digital soil and sediment thin section analysis
+# MiGIS toolbox for QGIS 3 - digital soil and sediment thin section analysis
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/workflow.png"
