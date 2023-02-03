@@ -44,7 +44,6 @@ Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O.,
 
 QGIS Development Team, 2022. QGIS Geographic Information System, Version 3.22. Open Source Geospatial Foundation. https://www.qgis.org/en/site/index.html
 
-
 ### Cite toolbox: 
 Zickel, M., Kehl, M., Gröbner, M., 2023. MiGIS toolbox. https://github.com/Mirijamz/MiGIS
 
@@ -58,7 +57,6 @@ year={2023},
 doi={XXXX}
 }
 ```
-
 
 # Detailed instructions
 1.	[Hardware](https://github.com/Mirijamz/MiGIS/blob/main/README.md#1-hardware)
@@ -90,7 +88,6 @@ doi={XXXX}
 11.	[MiGIS 3 classification](https://github.com/Mirijamz/MiGIS/blob/main/README.md#11-migis-3-classification)
 
 12.	[References](https://github.com/Mirijamz/MiGIS/blob/main/README.md#12-references)
-
 
 ### 1. Hardware
 •	Transmitted light scanner/ film scanner or similiar hardware to capture thin sections
@@ -139,8 +136,6 @@ MiGIS applies Scikit-learn Random Forest classifier with a fixed number of 100 t
 
 When constructing each decision tree of the Random Forest, the Classifier will still use all the given features defined in the training data. But for the node splitting only a defined number (maximum features) is used. These maximum features are randomly selected from the training data (see also Pedregosa et al. 2011, Scikit-learn developers 2007-2022, Breiman 2001).
 
-
-
 ## 7. Preprocessing
 
 ### 7.1 Transmitted light scanning (Canon Canoscan 9000F Mark II)
@@ -183,7 +178,6 @@ Figure 1: Creating a spatial reference (cross layer) for thin sections in Inksca
 
 **NOTE:** Use RGB8 PNG export mode without compression, do not export with alpha channel (RGBA_8).
 
-
 ### 7.3 Georeference thin section imagery (QGIS Georeferencer)
 1.	Open a new QGIS project and adjust the project’s CRS: EPSG:32634 - WGS 84 / UTM zone 34N (matches [MiGIS_georef.points]( https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_georef.points)). If the template is not used, another metric CRS – for example the UTM system should be applied.
 
@@ -206,7 +200,6 @@ Figure 2: Georeferencing a TL thin section image using reference crosses and the
 
 7.	Validate georeferentiation output by comparing the georeferenced TL, XPL and RL raster in the QGIS window.
 
-
 ## 8. MiGIS 1 preprocess TS images
 In a first step, the multi-band raster is created, by merging the georeferenced thin section images. The bundled spectral information is the target for later classification. To create the image stack or multi-band raster the tool merges the input RGB bands (TL, XPL, and opt. RL). As a result the multi-band raster will contain 6 (TL + XPL RGB image) or 9 (TL + XPL + RL RGB image) bands. The classification area can be narrowed down by using a clipping layer which matches the outlines of the sample section area (see result in [Fig. 3](github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MBR_MBRC.png). This step will enable precise area statistics and minimises the computational effort.
 
@@ -228,7 +221,6 @@ alt="MiGIS_1"/>
 </p>
 
 Figure 4: MiGIS 1 tool.
-
 
 ## 9. MiGIS 2.1 train algorithm
 Based on the created training areas (see Fig. 5 [ROIs](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROIs.png) - Regions of Interest) and target raster a Random Forest classification model will created (MODEL file). A training data set can be added by editing (see [vector editing]( https://docs.qgis.org/3.22/en/docs/user_manual/working_with_vector/editing_geometry_attributes.html?highlight=editing#)) a custom polygon shapefile (see [Creating a new shapefile](https://docs.qgis.org/2.18/en/docs/user_manual/managing_data_source/create_layers.html#creating-a-new-shapefile-layer)). 
@@ -284,13 +276,10 @@ Class label (field 3) = quartz
 
 **Class field (integer):** Select the class identifier field of the training data set. 
 
-
-
 ## 10. MiGIS 2.2 ROI evaluation [optional]
 To facilitate ROI validation the tool computes HTML boxplot diagrams for each input band of the multi-band raster. Thus 1-9 boxplot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands.This illustrates pixel value distribution (polygon area median) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see [Fig. 6](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROI_boxplot_exp%20.png). Raw median pixel values per ROI polygon for each band are stored in a CSV table.
 
 **Note:** The column heads are b[bandnumber]_median and b[bandnumber]_stdev.
-
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROI_boxplot_exp%20.png"
@@ -309,7 +298,6 @@ alt="MiGIS_2.2"/>
 </p>
 
 Figure 7: MiGIS 2.1 tool.
-
 
 ## 11. MiGIS 3 classification
 Based on a trained classification model from part 2 a classification map (see [Fig. 8](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)), confidence map, confusion matrix, and spatial statistics (see [Fig. 8](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png))  will be computed out of the classification result (classification map). The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
@@ -336,7 +324,6 @@ alt="Confi"/>
 
 Figure 9: Exemplary confusion matrix and selected accuracy parameters (see Congalton & Green 2019)
 
-
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_3.png"
 alt="MiGIS_3"/>
@@ -360,7 +347,6 @@ Figure 10: MiGIS 3 tool.
 **Class area in m² - class labels incl. (.csv):** Required output. Produces class-based area statistics to determine the quantity ratio of the classified components and the porosity (if such a class was created). Class labels (description) are provided in an additional column.
 
 **Class area in m² (.csv):** optional output. Numeric class identifier column only. Produces class-based area statistics to determine the quantity ratio of the classified components and the porosity.
-
 
 ## 12. References
 Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32
