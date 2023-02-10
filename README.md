@@ -300,7 +300,7 @@ alt="MiGIS_2.2"/>
 Figure 7: MiGIS 2.1 tool.
 
 ## 11. MiGIS 3 classification
-Based on a trained classification model from part 2 a classification map (see [Fig. 8](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)), confidence map, confusion matrix, and spatial statistics (see [Fig. 8](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png))  will be computed out of the classification result (classification map). The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
+Based on a trained classification model from part 2 a classification map (see [Fig. 8](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png)), confusion matrix, and spatial statistics (see [Fig. 8](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png))  will be computed out of the classification result (classification map). The accuracy assessment (confusion matrix) requires an additional reference training data set which contains the same classes as the ROI training data set, but a second set of ROIs (independent collection). 
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Class_output.png"
@@ -342,7 +342,7 @@ Figure 10: MiGIS 3 tool.
 
 **Confusion matrix:** Based on the matrix, classification accuracy statistics as overall accuracy, Kappa Coefficient (Cohen's Kappa), producer and user accuracy can be calculated (see Congalton & Green 2019).
 
-**Class area in m² (.csv):** optional output. Numeric class identifier column only. Produces class-based area statistics to determine the quantity ratio of the classified components and the porosity.
+**Class area in m² (.csv):** optional output. Numeric class identifier column only. Produces class-based area statistics to determine the quantity ratio of the classified components and the porosity. It is recommended to determine the area percentage on this basis.
 
 **Class area plot (.html):** Illustrates the area ratio of the input classes in a bar plot.
 
