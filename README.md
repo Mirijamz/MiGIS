@@ -340,13 +340,13 @@ Figure 10: MiGIS 3 tool.
 ### Output
 **Classification map (.tif):** Classification result based on the selected training (model, classes)
 
-**Confidence map (.tif):** Displays certain vs. uncertain areas of the classification result
-
 **Confusion matrix:** Based on the matrix, classification accuracy statistics as overall accuracy, Kappa Coefficient (Cohen's Kappa), producer and user accuracy can be calculated (see Congalton & Green 2019).
 
-**Class area in m² - class labels incl. (.csv):** Required output. Produces class-based area statistics to determine the quantity ratio of the classified components and the porosity (if such a class was created). Class labels (description) are provided in an additional column.
-
 **Class area in m² (.csv):** optional output. Numeric class identifier column only. Produces class-based area statistics to determine the quantity ratio of the classified components and the porosity.
+
+**Class area plot (.html):** Illustrates the area ratio of the input classes in a bar plot.
+
+
 
 ## 12. References
 Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32
