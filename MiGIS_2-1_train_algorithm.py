@@ -1,5 +1,5 @@
 """
-Model exported as python.
+Model exported as python. #modified
 Name : MiGIS 2.1 train algorithm
 Group : MiGIS
 With QGIS : 32201
@@ -59,17 +59,20 @@ class Migis21TrainAlgorithm(QgsProcessingAlgorithm):
         return 'MiGIS'
 
     def shortHelpString(self):
-        return """<html><body><p>MiGIS: Classifiy Sediment & Soil Thin Sections (TS)
+        return """<html><body><p>MiGIS: Classify rock, sediment & soil thin sections
 
 MiGIS 2
-In this step, a classification model is created based on the created training areas (ROIs - Regions Of Interest) within the thin section image extend. Optimally, the classification target is a multi-band raster dataset, consisting of the stacked TL (transmitted light), XPL (cross-polarised light) and RL (reflected light) images/bands. Also, to obtain a meaningful classification, it is recommended to first delimit the area to be classified (see MiGIS 1 - Create a classification area) and use the clipped raster as input to the model. Optionally, an ROI evaluation can be performed before creating the model (see MiGIS 2 - ROI evaluation).
+Trains Random Forest algorithm based on the created training data set (ROIs - Regions Of Interest) and creates a classification model. 
+Optimally, the classification target is a multi-band raster dataset, consisting of the stacked TL (transmitted light), XPL (cross-polarised light) and RL (reflected light) images/bands. Also, to obtain a meaningful classification, it is recommended to first delimit the area to be classified (see MiGIS 1 - Create a classification area) and use the clipped raster as input to the model. Optionally, an ROI evaluation can be performed before creating the model (see MiGIS 2 - ROI evaluation).
 </p>
 <h2>Input parameters</h2>
 <h3>Clipped multi-band raster (AOI, .tif)</h3>
 <p>Select the thin section to be classified. Preferably, a clipped multi-band raster containing TL, XPL and RL bands.
 </p>
 <h3>ROI layer (training dataset, .shp)</h3>
-<p>Training dataset (SHP format) with numeric (integer) class identification and class label field (text - string). Besides an ID field (integer) with unique value for each attribute (ROI polygon), there should always be at least two classes identified by different values in the attribute table.
+<p>Training dataset (SHP format) with numeric (integer) class identification and class label field (text - string). 
+Add an ID field (integer) with a unique value for each attribute (ROI polygon).
+Also, create a mimimum of at least two ROI classes, identified by different values in the attribute table.
 
 Example attribute 1:
  Id (field 1) = 23
@@ -84,11 +87,11 @@ Class label (field 3) = quarz</p>
 <p>Select the class identifier field of the training dataset. </p>
 <h2>Outputs</h2>
 <h3>Random Forest classification model (.model)</h3>
-<p>MODEL file containing the trained classification constraints according to the Random Forest decision tree scheme.</p>
+<p>MODEL file containing the trained classification scheme according to Random Forest algorithm.</p>
 <br><p align="right">Algorithm author: 
 
 Compilation: 
-Mirijam Zickel, 2022. MiGIS Thin Section Classification. https://github.com/Mirijamz/MiGIS-script, 2022-05-15.
+Mirijam Zickel, 2023. MiGIS Thin Section Classification. https://github.com/Mirijamz/MiGIS, 2022-05-15.
 
 References: 
 Breiman, “Random Forests”, Machine Learning, 45(1), 5-32, 2001. 
@@ -100,7 +103,7 @@ QGIS Development Team, 2022. QGIS Geographic Information System, Version 3.22. O
 Scikit-learn developers, 2007-2022. User guide: 1.11.2. Forests of randomized trees. https://scikit-learn.org/stable/modules/ensemble.html#forest, 2022-05-04. </p><p align="right">Help author: Mirijam Zickel, 2022</p><p align="right">Algorithm version: MiGIS 1.0</p></body></html>"""
 
     def helpUrl(self):
-        return 'https://github.com/Mirijamz/MiGIS-script'
+        return 'https://github.com/Mirijamz/MiGIS'
 
     def createInstance(self):
         return Migis21TrainAlgorithm()

@@ -1,5 +1,5 @@
 """
-Model exported as python.
+Model exported as python. #modified
 Name : MiGIS 1 preprocess TS images
 Group : MiGIS
 With QGIS : 32201
@@ -19,8 +19,8 @@ class Migis1PreprocessTsImages(QgsProcessingAlgorithm):
     def initAlgorithm(self, config=None):
         self.addParameter(QgsProcessingParameterMultipleLayers('Georefthinsectionscans', 'Thin section scans (georef., .tif)', layerType=QgsProcessing.TypeRaster, defaultValue=None))
         self.addParameter(QgsProcessingParameterVectorLayer('TSareabeingclassified (2)', 'Area of interest (to be classified, .shp)', types=[QgsProcessing.TypeVectorPolygon], defaultValue=None))
-        self.addParameter(QgsProcessingParameterRasterDestination('ClippedMultibandRasterAoiTif', 'Clipped multi-band raster (AOI, .tif)', createByDefault=True, defaultValue=None))
         self.addParameter(QgsProcessingParameterRasterDestination('MultibandRasterTlXplAndOptRlImageStackTif', 'Multi-band raster (TL, XPL and opt. RL image stack, .tif)', createByDefault=True, defaultValue=None))
+        self.addParameter(QgsProcessingParameterRasterDestination('ClippedMultibandRasterAoiTif', 'Clipped multi-band raster (AOI, .tif)', createByDefault=True, defaultValue=None))
 
     def processAlgorithm(self, parameters, context, model_feedback):
         # Use a multi-step feedback, so that individual child algorithm progress reports are adjusted for the
@@ -84,30 +84,33 @@ class Migis1PreprocessTsImages(QgsProcessingAlgorithm):
         return 'MiGIS'
 
     def shortHelpString(self):
-        return """<html><body><p>MiGIS: Classifiy Sediment & Soil Thin Sections (TS)
+        return """<html><body><p>MiGIS: Classify rock, sediment & soil thin sections
 
 MiGIS 1
-In a first step, the multi-band raster is created from the georeferenced thin section scans, which forms the base for the later classification of the diagnostic components. In addition, the classification area can be narrowed down by using a clipping layer.This method enables precise area statistics and minimises the computational effort.</p>
+Creates a multi-band raster by merging the georeferenced thin section scans.
+The multi-band raster will be used for classification training in (MiGIS 2). 
+In addition, the classification area (sample section coverage) can be cropped using a clip layer.
+This method enables class related spatial statistics (MiGIS 3) and minimises the computational effort.</p>
 <h2>Input parameters</h2>
-<h3>Thin section scans (georef., .tif)</h3>
-<p>Georeferenced thin section scans (maximum is three RGB images):
+<h3>Thin section imagery (georef., .tif)</h3>
+<p>Georeferenced thin section scans (max. three RGB images or 9 bands):
 TL - transmitted light scanned image
 XPL - cross polarized scanned image
 RL - reflected light scanned image</p>
 <h3>Area of interest (to be classified, .shp)</h3>
-<p>Single polygon which covers relevant parts of the sediment section only.
-Single polygon covering the area of the thin section scan to be classified. Usually, the substrate cover area should be sharply outlined to allow precise calculation of the pore spac volume. 
-Also, major artefacts of sample collection, storage or production should be excluded here.</p>
+<p>Single polygon covering the sample section (or relevant parts) which needs to be classified. 
+Should be sharply delimited to allow precise pore space volume calculation (MiGIS 3). 
+Also, major artefacts of sample collection, storage, or production should be excluded here.</p>
 <br><p align="right">Algorithm author: 
 
 Compilation: 
-Mirijam Zickel, 2022. MiGIS Thin Section Classification. https://github.com/Mirijamz/MiGIS-script, 2022-05-15.
+Mirijam Zickel, 2023. MiGIS Thin Section Classification. https://github.com/Mirijamz/MiGIS, 2022-05-15.
 
 References:
 QGIS Development Team, 2022. QGIS Geographic Information System, Version 3.22. Open Source Geospatial Foundation. https://www.qgis.org/en/site/index.html , 2022-05-04. </p><p align="right">Help author: Mirijam Zickel, 2022</p><p align="right">Algorithm version: MiGIS 1.0</p></body></html>"""
 
     def helpUrl(self):
-        return 'https://github.com/Mirijamz/MiGIS-script'
+        return 'https://github.com/Mirijamz/MiGIS'
 
     def createInstance(self):
         return Migis1PreprocessTsImages()
