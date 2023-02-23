@@ -1,4 +1,4 @@
-# MiGIS toolbox for QGIS 3 - digital soil and sediment thin section analysis
+# MiGIS toolbox for QGIS 3 - digital rock,sediment & soil thin section analysis
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/workflow.png"
@@ -6,7 +6,7 @@ alt="MiGIS-Workflow"/>
 </p>
 
 ## Short version
-MiGIS was developed for digital spatial analysis and composition classification of soil and sediment thin sections in QGIS 3 3. The plugin is divided in three main parts to pre-process in [MiGIS 1](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_1_preprocess.py), train [MiGIS 2.1](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_2-1_train_algorithm.py) and classify [MiGIS 3](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_3_classification.py). In addition, training data set validity can be assessed in [MiGIS 2.2](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_2-2_ROI_eval.py). [Detailed processing](https://github.com/Mirijamz/MiGIS/tree/main#detailed-instructions) is described below, but summarised in the following.
+MiGIS was developed for digital spatial analysis and composition classification of rock, soil and sediment thin sections in QGIS 3. The plugin is divided in three main parts to pre-process in [MiGIS 1](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_1_preprocess.py), train [MiGIS 2.1](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_2-1_train_algorithm.py) and classify [MiGIS 3](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_3_classification.py). In addition, training data set validity can be assessed in [MiGIS 2.2](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_2-2_ROI_eval.py). [Detailed processing](https://github.com/Mirijamz/MiGIS/tree/main#detailed-instructions) is described below, but summarised in the following.
 
 ### Integrate MiGIS into QGIS
 The toolbox can be easily integrated into QGIS as a [Python processing script](https://docs.qgis.org/3.22/en/docs/user_manual/processing/toolbox.html). Besides native QGIS 3 (QGIS Development Team, 2022) and GDAL (GDAL/OGR contributors 2022) geoprocessing algorithms, MiGIS also applies parts of the [Dzetsaka classification plugin for QGIS](https://github.com/nkarasiak/dzetsaka) (see Karasiak 2016). The Dzetsaka plugin must be added separately via the [QGIS extension manager]( https://docs.qgis.org/3.22/en/docs/training_manual/qgis_plugins/fetching_plugins.html). The Random Forest classifier, integrated via Dzetsaka, runs with the Python scipy library, thus scikit-learn (see Pedregosa et al. 2011) must be installed via the OSGeo shell (see [Dzetsaka classification plugin manual](https://github.com/nkarasiak/dzetsaka/blob/master/readme.md).
@@ -17,7 +17,7 @@ Commands for QGIS > 3.22:
 `python3 -m pip install scikit-learn -U --user`
 
 ### Imagery aquisition
-Up to three high-resolution RGB images of a thin section, for example a transmitted light (TL), cross-polarised (XPL) and reflected light (RL) image are required. The described workflow is adapted to soil and sediment micromorphology, a section size of 6x8 cm and flatbed scan acquired imagery with a resolution of 1200 dpi, but can be adapted to other application areas and section types and sizes.
+Up to three high-resolution RGB images of a thin section, for example a transmitted light (TL), cross-polarised (XPL) and reflected light (RL) image are required. The described workflow was originally created for soil and sediment micromorphology and a section size of 6x8 cm and flatbed scan acquired imagery with a resolution of 1200 dpi. But it can be easily adapted to other application areas, such as microfacies analysis in petrography, section types and sizes.
 
 ### Geoeferencing
 Before importing the imagery into QGIS, spatial reference points have to be created using image processing software (see Inkscape template file: [MiGIS_TS_ref_temp.svg](https://github.com/Mirijamz/MiGIS/blob/main/Preprocessing_templates/MiGIS_TS_ref_temp.svg)). These reference points match the dimensions provided by [MiGIS_georef.points](https://github.com/Mirijamz/MiGIS/blob/main/Preprocessing_templates/MiGIS_georef.points) and are used for straightforward georeferentiation, using QGIS Georeferencer and a metric CRS (coordinate reference system), for example UTM. 
@@ -109,7 +109,7 @@ doi={XXXX}
 •	Good training in micromorphology
 
 ### 4. Micromorphological thin section scans
-In micromorphology, different microscope light modes - PPL (Plane Polarized Light), XPL (Cross Polarised Light) and OIL (Oblique Incident Light) - are used to distinguish thin section components (e.g. minerals) by their specific light refraction properties in different polarisation modes. Using transmitted light scanning, the analytical oppurtunities of petrographic microscopy can be obtained for an entire thin section. PPL can be acquired by capturing the plain thin section in transmitted light scanning mode (TL - Transmitted Light). For XPL, two orthogonally aligned polarisation films (90° orientation offset) are added on top and below the thin section. Using ordinary flatbed scanning and a black (isotropic) film on top of the thin section, a RL (Reflected Light) image can be produced which is similar to OIL imagery.
+In micromorphology (but also in petrography), different microscope light modes - PPL (Plane Polarized Light), XPL (Cross Polarised Light) and OIL (Oblique Incident Light) - are used to distinguish thin section components (e.g. minerals) by their specific light refraction properties in different polarisation modes. Using transmitted light scanning, these analytical oppurtunities of petrographic microscopy can be obtained for an entire thin section. PPL can be acquired by capturing the plain thin section in transmitted light scanning mode (TL - Transmitted Light). For XPL, two orthogonally aligned polarisation films (90° orientation offset) are added on top and below the thin section. Using ordinary flatbed scanning and a black (isotropic) film on top of the thin section, a RL (Reflected Light) image can be produced which is similar to OIL imagery.
 
 ## 5. MiGIS integration (QGIS 3)
 1.	Install the Dzetsaka Classification Plugin in QGIS (go to ‘Plugins’ and select ‘Manage and install plugins’).
