@@ -275,16 +275,16 @@ Class label (field 3) = quartz
 **Class field (integer):** Select the class identifier field of the training data set. 
 
 ## 10. MiGIS 2.2 ROI evaluation [optional]
-To facilitate ROI validation the tool computes HTML boxplot diagrams for each input band of the multi-band raster. Thus 1-9 boxplot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands.This illustrates pixel value distribution (polygon area median) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see [Fig. 6](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROI_boxplot_exp%20.png). Raw median pixel values per ROI polygon for each band are stored in a CSV table.
+To facilitate ROI validation the tool computes HTML box plot diagrams for each input band of the multi-band raster. Thus 1-9 box plot diagrams are created as output. A maximum of nine bands will be created, if the multi-band raster contains the TL, XPL and RL bands. This illustrates pixel value distribution (polygon area mean) and standard deviation of the classes. Classes showing increased similarity to others in most bands, also as classes broadly scattered values are likely to be confused with other classes. In addition, outlier ROIs can be identified in this way. The interactive HTML plot allows detailed data exploration (see [Fig. 6](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROI_boxplot_exp%20.png). Raw mean pixel values per ROI polygon for each band are stored in a CSV table.
 
-**Note:** The column heads are b[bandnumber]_median and b[bandnumber]_stdev.
+**Note:** The column heads are b[bandnumber]_mean and b[bandnumber]_stdev.
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/ROI_boxplot_exp%20.png"
-alt="ROI band boxplot"/>
+alt="ROI band box plot"/>
 </p>
 
-Figure 6: Boxplot showing ROI value distribution of one band per class.
+Figure 6: Box plot showing ROI value distribution of one band per class.
 
 ### Additional information
 ### Input
@@ -307,11 +307,14 @@ alt="ClaM"/>
 
 Figure 8: Exemplary classification map and spatial statistics.
 
-•	In a further step, area statistics can also be created for the classes based on the classification map.
 
 •	To run the prediction and to produce the classification map one of the clipped multi-band raster (including the TL, XPL and optional RL image) is required. 
 
 •	It is also recommended to limit the classification area as much as possible to the sample section extent by using a clipped multi-band raster (see [MiGIS 1](https://github.com/Mirijamz/MiGIS#migis-1-preprocess-ts-images)). 
+
+•	The output classification map will be in singleband greyscale mode. A colorramp can be applied in the raster properties symbology tab by setting the render type to [Palleted/Unique values](https://docs.qgis.org/3.22/en/docs/user_manual/working_with_raster/raster_properties.html?highlight=raster%20symbology#paletted-unique-values).
+
+•	In a further step, area statistics can be calculated for all classes. based on the classification map (see output: 'Class area in m²' and 'Class area plot').
 
 •	The confusion matrix (see [Fig.9](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Confusion_exp.png)) requires a second reference (independent) training data set with identical fields as the original training data set e.g. ID, Class, Class No, identical classes and labels, but a second set of ROIs.
 
