@@ -339,7 +339,7 @@ class Migis22RoiEvaluationOptional(QgsProcessingAlgorithm):
         return 'MiGIS'
 
     def shortHelpString(self):
-        return """<html><body><p>MiGIS: Classify rock, sediment, and soil thin sections
+        return """<html><body><p>MiGIS: Classify rock, sediment & soil thin sections
 
 MiGIS 2 [optional]
 Enables training class and raster band specific ROI (Regions of Interest) validation. 

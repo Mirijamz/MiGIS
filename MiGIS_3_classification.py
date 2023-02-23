@@ -178,11 +178,9 @@ However, a model trained on one raster can be applied on another multi-band rast
 <h2>Outputs</h2>
 <h3>Classification map (.tif)</h3>
 <p>Classification result based on the selected training data (model, ROI classes).</p>
-<h3>Confidence map (.tif)</h3>
-<p>Displays certain vs. uncertain areas of the classification result</p>
 <h3>Confusion matrix (.csv)</h3>
 <p>To assess classification accuracy. Based on this matrix, classification accuracy statistics as overall accuracy, Kappa Coefficient (Cohen's Kappa), commission and omission errors can be calculated (see Congalton & Green 2019).</p>
-<h3>Class area in m² with class labels (.csv)</h3>
+<h3>Class area in m² (.csv)</h3>
 <p>Produces class related pixel area statistics, to determine quantities and area ratios of classified components, such as pore space volume (if such a class was created). 
 The output unit is m², it is helpful to calculate class percentages in relation to the total classified area from the output values. 
 Class descriptions (labels) are automatically added from the class labels (class label field) stored in the reference training data set (ROI reference layer). </p>
