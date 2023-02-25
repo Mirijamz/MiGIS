@@ -314,23 +314,30 @@ Figure 8: Exemplary classification map and spatial statistics.
 
 •	The output classification map will be in singleband greyscale mode. A colorramp can be applied in the raster properties symbology tab by setting the render type to [Palleted/Unique values](https://docs.qgis.org/3.22/en/docs/user_manual/working_with_raster/raster_properties.html?highlight=raster%20symbology#paletted-unique-values).
 
-•	In a further step, area statistics can be calculated for all classes. based on the classification map (see output: 'Class area in m²' and 'Class area plot').
+•	In a further step, area statistics (see [Fig.9](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/CA_plot.png)) can be calculated for all classes, based on the classification map (see output: 'Class area in m²' and 'Class area plot').
 
-•	The confusion matrix (see [Fig.9](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Confusion_exp.png)) requires a second reference (independent) training data set with identical fields as the original training data set e.g. ID, Class, Class No, identical classes and labels, but a second set of ROIs.
+<p align="center">
+  <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/CA_plot.png"
+alt="Confi"/>
+</p>
+
+Figure 9: Exemplary class area statistics plot for a thin section scan classification.
+
+•	The confusion matrix (see [Fig.10](https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Confusion_exp.png)) requires a second reference (independent) training data set with identical fields as the original training data set e.g. ID, Class, Class No, identical classes and labels, but a second set of ROIs.
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/Confusion_exp.png"
 alt="Confi"/>
 </p>
 
-Figure 9: Exemplary confusion matrix and selected accuracy parameters (see Congalton & Green 2019)
+Figure 10: Exemplary confusion matrix and selected accuracy parameters (see Congalton & Green 2019)
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/MiGIS_3.png"
 alt="MiGIS_3"/>
 </p>
 
-Figure 10: MiGIS 3 tool.
+Figure 11: MiGIS 3 tool.
 
 ### Additional information
 ### Input
