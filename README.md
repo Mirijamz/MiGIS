@@ -6,7 +6,7 @@ alt="MiGIS-Workflow"/>
 </p>
 
 ## Short version
-MiGIS was developed for digital spatial analysis and composition classification of rock, soil and sediment thin sections in QGIS 3. The plugin is divided in three main parts to pre-process in [MiGIS 1](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_1_preprocess.py), train [MiGIS 2.1](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_2-1_train_algorithm.py) and classify [MiGIS 3](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_3_classification.py). In addition, training data set validity can be assessed in [MiGIS 2.2](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_2-2_ROI_eval.py). [Detailed processing](https://github.com/Mirijamz/MiGIS/tree/main#detailed-instructions) is described below, but summarised in the following.
+The Micromorphological and Geographic Information System - MiGIS was developed for digital spatial analysis and feature classification of rock, soil and sediment thin sections in QGIS 3. The plugin is divided in three main parts to pre-process in [MiGIS 1](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_1_preprocess.py), train [MiGIS 2.1](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_2-1_train_algorithm.py) and classify [MiGIS 3](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_3_classification.py). In addition, training data set validity can be assessed in [MiGIS 2.2](https://github.com/Mirijamz/MiGIS/blob/main/MiGIS_processing_scripts/MiGIS_2-2_ROI_eval.py). [Detailed processing](https://github.com/Mirijamz/MiGIS/tree/main#detailed-instructions) is described below, but summarised in the following.
 
 ### Integrate MiGIS into QGIS
 The toolbox can be easily integrated into QGIS as a [Python processing script](https://docs.qgis.org/3.22/en/docs/user_manual/processing/toolbox.html). Besides native QGIS 3 (QGIS Development Team, 2022) and GDAL (GDAL/OGR contributors 2022) geoprocessing algorithms, MiGIS also applies parts of the [Dzetsaka classification plugin for QGIS](https://github.com/nkarasiak/dzetsaka) (see Karasiak 2016). The Dzetsaka plugin must be added separately via the [QGIS extension manager]( https://docs.qgis.org/3.22/en/docs/training_manual/qgis_plugins/fetching_plugins.html). The Random Forest classifier, integrated via Dzetsaka, runs with the Python scipy library, thus scikit-learn (see Pedregosa et al. 2011) must be installed via the OSGeo shell (see [Dzetsaka classification plugin manual](https://github.com/nkarasiak/dzetsaka/blob/master/readme.md).
@@ -119,7 +119,7 @@ In micromorphology (but also in petrography), different microscope light modes -
     
     `python3 -m pip install scikit-learn -U --user`
 
-3.  For a detailed instruction check the documentation of [Dzetsaka classification plugin manual](https://github.com/nkarasiak/dzetsaka/blob/master/readme.md)
+3.  For detailed instructions check the documentation of [Dzetsaka classification plugin manual](https://github.com/nkarasiak/dzetsaka/blob/master/readme.md)
 4.	Import the MiGIS Python scripts to your QGIS Project (Python symbol ([Python processing script](https://docs.qgis.org/3.22/en/docs/user_manual/processing/toolbox.html)) in ‘Processing toolbox’ tab) by ‘Adding Script to Toolbox’.
 5.	After importing, all four parts of the toolbox are available in the QGIS ‘Processing toolbox’ (category ‘Scripts’, 'Python').
 
