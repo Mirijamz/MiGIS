@@ -29,7 +29,7 @@ For the semi-supervised classification approach, user defined ROIs (Regions of I
 After creating the classification model in [MiGIS 2.1](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-21-train-algorithm) and based on the (cropped) multi-band raster of [MiGIS 1](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-1-preprocess-ts-images), it can be classified in [MiGIS 3](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-22-roi-evaluation-optional). For the accuracy assessment, the creation of a confusion matrix, another training dataset with independent reference ROIs must be available. Based on the classification map created with MiGIS 3, class area statistics (in m²) can be generated and ploted.
 
 ### Related publication: 
-Zickel, M., Kehl, M., Gröbner, M. o(in prep.). MiGIS: Digital soil and sediment thin sections analyses using an open-source GIS Machine Learning approach. Applied Computing and Geosciences.
+Zickel, M., Kehl, M., Gröbner, M. o(in prep.). MiGIS: Micromorphological soil and sediment thin section analysis using an open-source GIS and machine learning approach. E & G Quaternary Science Journal (EGQSJ), article recently submitted.
 
 ### This work is based on:
 Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32.
