@@ -1,4 +1,4 @@
-# MiGIS toolbox for QGIS 3 - digital rock,sediment & soil thin section analysis
+# MiGIS toolbox for QGIS 3 - digital rock (sediment) & soil thin section analysis
 
 <p align="center">
   <img src="https://github.com/Mirijamz/MiGIS/blob/main/Manual_figures/workflow.png"
