@@ -29,7 +29,8 @@ For the semi-supervised classification approach, user defined ROIs (Regions of I
 After creating the classification model in [MiGIS 2.1](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-21-train-algorithm) and based on the (cropped) multi-band raster of [MiGIS 1](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-1-preprocess-ts-images), it can be classified in [MiGIS 3](https://github.com/Mirijamz/MiGIS/blob/main/README.md#migis-22-roi-evaluation-optional). For the accuracy assessment, the creation of a confusion matrix, another training dataset with independent reference ROIs must be available. Based on the classification map created with MiGIS 3, class area statistics (in m²) can be generated and ploted.
 
 ### Related publication: 
-Zickel, M., Kehl, M., Gröbner, M. o(in prep.). MiGIS: Micromorphological soil and sediment thin section analysis using an open-source GIS and machine learning approach. E & G Quaternary Science Journal (EGQSJ), article recently submitted.
+Zickel, M., Kehl, M., Gröbner, M. o(accepted). MiGIS: Micromorphological soil and sediment thin section analysis using an open-source GIS and machine learning approach. E & G Quaternary Science Journal (EGQSJ).
+
 
 ### This work is based on:
 Breiman, L., 2001. “Random Forests”. Machine Learning, 45 (1), 5-32.
@@ -42,17 +43,19 @@ Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O.,
 
 QGIS Development Team, 2022. QGIS Geographic Information System, Version 3.22. Open Source Geospatial Foundation. https://www.qgis.org/en/site/index.html
 
-### Cite toolbox: 
-Zickel, M., Kehl, M., Gröbner, M., 2023. MiGIS toolbox. https://github.com/Mirijamz/MiGIS
+### Cite toolbox v1: 
+Zickel, M., & Gröbner, M. (2023). MiGIS toolbox for QGIS 3. In E&G Quaternary Science Journal (1.0). Zenodo. https://doi.org/10.5281/zenodo.10527165
 
 Bibtex reference:
 ```
 @misc{zickel2023MiGIS,
 title={MiGIS toolbox},
-author={Mirijam Zickel and Martin Kehl and Marie Gröbner},
+version={1.0},
+author={Mirijam Zickel and and Marie Gröbner},
+journal={E&G Quaternary Science Journal}
 url={https://github.com/Mirijamz/MiGIS},
+doi={https://doi.org/10.5281/zenodo.10527165},
 year={2023},
-doi={XXXX}
 }
 ```
 
